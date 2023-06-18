@@ -93,5 +93,15 @@ baseConfig.collections.forEach((collection) => {
   });
 });
 
+// Enslure ./public exists
+if (!fs.existsSync("./public")) {
+  fs.mkdirSync("./public");
+}
+
+// Ensure ./public/admin exists
+if (!fs.existsSync("./public/admin")) {
+  fs.mkdirSync("./public/admin");
+}
+
 // Write to new YAML file
 fs.writeFileSync("./public/admin/config.yml", yaml.dump(baseConfig), "utf8");
