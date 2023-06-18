@@ -10,6 +10,8 @@
 
 # production
 /build
+/public/admin/config.yml
+/src/data.json
 
 # misc
 .DS_Store

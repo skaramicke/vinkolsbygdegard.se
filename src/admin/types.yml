@@ -1,0 +1,64 @@
+types:
+  - name: text
+    label: Textblock
+    widget: object
+    fields:
+      - name: heading
+        label: Rubrik
+        widget: string
+        required: false
+      - name: body
+        label: Text
+        widget: markdown
+        minimal: true
+  - name: image
+    label: "Bild med bildtext"
+    widget: object
+    fields:
+      - name: heading
+        label: Rubrik
+        widget: string
+        required: false
+      - label: Bild
+        name: image
+        widget: image
+      - label: Alt-text
+        name: alt
+        widget: string
+      - label: Bildtext
+        name: caption
+        widget: string
+  - name: columns
+    label: Kolumner
+    label_singular: Kolumnpar
+    widget: object
+    fields:
+      - name: heading
+        label: Rubrik
+        widget: string
+        required: false
+      - name: left
+        label: Vänster
+        widget: list
+        types:
+          - substitute: text
+          - substitute: image
+      - name: right
+        label: Höger
+        widget: list
+        types:
+          - substitute: text
+          - substitute: image
+  - name: gallery
+    label: Galleri
+    widget: object
+    fields:
+      - name: heading
+        label: Rubrik
+        widget: string
+        required: false
+      - name: images
+        label: Bilder
+        widget: list
+        types:
+          - substitute: image

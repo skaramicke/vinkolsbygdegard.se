@@ -1,0 +1,51 @@
+backend:
+  name: github
+  repo: skaramicke/vinkolsbygdegard.se
+  branch: main
+  base_url: https://vinkol.mikael.green
+  auth_endpoint: /auth
+  open_authoring: true
+
+local_backend: true
+media_folder: public/images
+public_folder: /images
+locale: sv
+
+collections:
+  - name: pages
+    label: Sidor
+    label_singular: Sida
+    folder: src/data/pages
+    create: true
+    slug: "{{titel}}"
+    format: json
+    fields:
+      - { label: Titel, name: title, widget: string }
+      - name: body
+        label: Innehåll
+        widget: list
+        types:
+          - substitute: text
+          - substitute: image
+          - substitute: columns
+          - substitute: gallery
+
+  - name: news
+    label: Nyheter
+    label_singular: Nyhet
+    folder: src/data/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}"
+    format: json
+    fields:
+      - { label: Titel, name: title, widget: string }
+      - { label: Datum, name: date, widget: datetime }
+      - { label: Utvald bild, name: thumbnail, widget: image, required: false }
+      - name: body
+        label: Innehåll
+        widget: list
+        types:
+          - substitute: text
+          - substitute: image
+          - substitute: columns
+          - substitute: gallery
