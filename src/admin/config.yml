@@ -4,7 +4,6 @@ backend:
   branch: main
   base_url: https://vinkol.mikael.green
   auth_endpoint: /auth
-  open_authoring: true
 
 local_backend: true
 media_folder: public/images
