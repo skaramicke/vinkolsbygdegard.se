@@ -1,19 +1,14 @@
 import React from "react";
+import { CmsImage } from "../types/cms";
 
-export interface ImageProps {
-  type: "image";
-  heading?: string;
-  image: string; // URL
-  altText: string;
-  caption: string;
-}
-
-const Image = (props: ImageProps) => (
-  <div>
-    {props.heading && <h1>{props.heading}</h1>}
-    <img src={props.image} alt={props.altText} />
-    <p>{props.caption}</p>
-  </div>
-);
+const Image = ({ heading, image, alt, caption }: CmsImage) => {
+  return (
+    <div>
+      {heading && <h1>{heading}</h1>}
+      <img src={image} alt={alt} />
+      <p>{caption}</p>
+    </div>
+  );
+};
 
 export default Image;

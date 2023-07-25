@@ -1,0 +1,22 @@
+{
+  "showInMenu": true,
+  "title": "Kontakt",
+  "order": 7,
+  "body": [
+    {
+      "type": "columns",
+      "left": [
+        {
+          "type": "text",
+          "body": "**Kontakt:** Bengt Samuelsson  \n**Telefon:** 076-040 29 86  \n**Mail:** vinkolsbygdegard@gmail.com  \n\n**Adress:**\\\nFredrik Bengtsson\\\n”Vinköls Bygdegårdsförening”\\\nVinköl, Berget\\\n532 94 Skara"
+        }
+      ],
+      "right": [
+        {
+          "type": "text",
+          "body": "Bygg, -städ och underhåll:\n\nVi har skötselgrupper både ute och inne som har det yttersta ansvaret för att förbereda inför planerade arbetsdagar och dom har även koll på vad som behöver åtgärdas både ute och inne.\n\nUtegruppen tittar över våran gård och ser vad som behöver åtgärdas..\n\nInnegruppen tittar över så att det är fint i bygdegården och att det finns engångsmaterial, så som disktrasor, diskmedel, toalettpapper m.m\n\n**Skötselgrupp ute:**\n\n* Henry Pettersson, tel. 0511- 37 40 55\n* Klas-Olof Leth, tel. 0511- 37 40 78\n\n**Skötselgrupp inne:**\n\n* Lena Andersson, tel. 0511- 37 40 20"
+        }
+      ]
+    }
+  ]
+}

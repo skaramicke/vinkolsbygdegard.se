@@ -1,0 +1,30 @@
+{
+  "showInMenu": true,
+  "title": "Historik",
+  "body": [
+    {
+      "type": "text",
+      "body": "Vinköls socken har en lång historia som har dokumenterats i bl.a. ”vinkölsboken” det finns bilder på Skara museum osv. Här kan du läsa lite kort om bygdens historia, människorna och se bilder.\n\nVi har gott om fornlämningar men går du runt i skogarna finns det spår av mer modern historia.\nTorp som på bara 70 år försvunnit."
+    },
+    {
+      "type": "gallery",
+      "images": [
+        {
+          "type": "image",
+          "image": "/images/history-1.png",
+          "alt": "Bild 1"
+        },
+        {
+          "type": "image",
+          "image": "/images/history-2.png",
+          "alt": "Bild 2"
+        },
+        {
+          "type": "image",
+          "image": "/images/history-3.png",
+          "alt": "Bild 3"
+        }
+      ]
+    }
+  ]
+}

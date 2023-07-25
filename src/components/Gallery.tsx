@@ -1,18 +1,15 @@
 import React from "react";
-import Image, { ImageProps } from "./Image";
+import Image from "./Image";
+import { CmsGallery } from "../types/cms";
 
-export interface GalleryProps {
-  type: "gallery";
-  heading?: string;
-  images: ImageProps[];
-}
-
-const Gallery = (props: GalleryProps) => (
+const Gallery = ({ heading, images }: CmsGallery) => (
   <div>
-    {props.heading && <h1>{props.heading}</h1>}
-    {props.images.map((image) => (
-      <Image {...image} />
-    ))}
+    {heading && <h2>{heading}</h2>}
+    <div className="flex justify-between flex-wrap max-w-l gap-2">
+      {images.map((image, i) => (
+        <Image key={`${i} ${image.image}`} {...image} />
+      ))}
+    </div>
   </div>
 );
 

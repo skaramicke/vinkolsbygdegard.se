@@ -2,6 +2,8 @@ types:
   - name: text
     label: Textblock
     widget: object
+    summary: 'Rubrik: "{{fields.heading}}", Text: "{{fields.body}}"'
+    collapsed: false
     fields:
       - name: heading
         label: Rubrik
@@ -11,9 +13,11 @@ types:
         label: Text
         widget: markdown
         minimal: true
+
   - name: image
     label: "Bild med bildtext"
     widget: object
+    summary: 'Rubrik: "{{fields.heading}}", Bild: "{{fields.alt}}", Bildtext: "{{fields.caption}}"'
     fields:
       - name: heading
         label: Rubrik
@@ -28,30 +32,53 @@ types:
       - label: Bildtext
         name: caption
         widget: string
+        required: false
+
   - name: columns
     label: Kolumner
     label_singular: Kolumnpar
     widget: object
+    summary: 'Rubrik: "{{fields.heading}}", Vänster: {{fields.left[0].type}}. Höger: {{fields.right[0].type}}'
     fields:
       - name: heading
         label: Rubrik
         widget: string
         required: false
+      - name: leftAlign
+        label: Vänsterkolumnens justering
+        widget: select
+        options:
+          - { label: "Vänster", value: "left" }
+          - { label: "Centrerad", value: "center" }
+          - { label: "Höger", value: "right" }
+          - { label: "Marginaljusterfad", value: "justify" }
+        default: left
       - name: left
-        label: Vänster
+        label: Vänster innehåll
         widget: list
         types:
           - substitute: text
           - substitute: image
+      - name: rightAlign
+        label: Högerkolumnens justering
+        widget: select
+        options:
+          - { label: "Vänster", value: "left" }
+          - { label: "Centrerad", value: "center" }
+          - { label: "Höger", value: "right" }
+          - { label: "Marginaljusterfad", value: "justify" }
+        default: left
       - name: right
-        label: Höger
+        label: Höger innehåll
         widget: list
         types:
           - substitute: text
           - substitute: image
+
   - name: gallery
     label: Galleri
     widget: object
+    summary: 'Rubrik: "{{fields.heading}}", Första bild: "{{fields.images[0].alt}}"'
     fields:
       - name: heading
         label: Rubrik

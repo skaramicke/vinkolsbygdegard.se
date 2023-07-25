@@ -1,0 +1,11 @@
+{
+  "showInMenu": true,
+  "title": "Nyheter",
+  "body": [
+    {
+      "type": "text",
+      "body": "Här kan du läsa nyheter"
+    }
+  ],
+  "order": ""
+}

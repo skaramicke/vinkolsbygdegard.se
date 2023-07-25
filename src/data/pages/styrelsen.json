@@ -1,0 +1,25 @@
+{
+  "showInMenu": true,
+  "order": 6,
+  "title": "Styrelsen",
+  "body": [
+    {
+      "type": "columns",
+      "left": [
+        {
+          "type": "text",
+          "body": "### Ordförande:\n\nFredrik Bengtsson\n\n### Ledamöter:\n\nLinda Garyd Berglund, Robert Holmström, Bo Thörnberg, Lena Jansson, Leif Hildingsson och Ingela Johansson\n\n### Suppleanter:\n\nJenny Jacobsson, Niklas Ullberg, Jenny Elwing, Karl-Olof Ullberg och Kent Karlsson"
+        }
+      ],
+      "right": [
+        {
+          "type": "image",
+          "image": "/images/styrelsen.png",
+          "alt": "Styrelsen"
+        }
+      ],
+      "leftAlign": "left",
+      "rightAlign": "center"
+    }
+  ]
+}

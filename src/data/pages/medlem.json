@@ -1,0 +1,33 @@
+{
+  "showInMenu": true,
+  "title": "Medlem",
+  "body": [
+    {
+      "type": "text",
+      "body": "Vi är väldigt tacksamma för alla som vill vara medlemmar i vår bygdegårdsförening, vi som är medlemmar får hyra lokalerna till reducerat pris, och som medlem får du även reducerat pris på div. evenemang.\n\nVi har även en mail i bygdegårdsföreningen och till alla som är med på maillistan får div. informationer om bygdegården så som fester aktiviteter m.m. eller om lite annat som kan hända i Vinköl, ni får även ta del av en hel del information som kommer från Skara Kommun, eller andra bygdegårdar runt om Vinköl. Se mailadressen nedan!"
+    },
+    {
+      "type": "columns",
+      "left": [
+        {
+          "type": "text",
+          "body": "Det är tack vare er medlemmar som vi kan ha vår fina bygdegård kvar i bygden.\\\n\\\nVill ni bli medlem så betalar ni in på bankgiro 260-9188\\\n(glöm inte att skriva in ert namn och efternamn)\\\n\\\nDu, din familj eller din förening kan bli medlem.\\\n200 kr – person / 500 kr – familj"
+        }
+      ],
+      "right": [
+        {
+          "type": "image",
+          "image": "/images/member.png",
+          "alt": "Bli medlem nu!",
+          "caption": "Bli medlem nu"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "body": "Skriv ett mail till [vinkolsbygdegard@gmail.com](mailto:vinkolsbygdegard@gmail.com) att du vill komma med på listan så ordnar vi det!",
+      "heading": "Anmälan till maillista"
+    }
+  ],
+  "order": 3
+}

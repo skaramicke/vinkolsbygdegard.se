@@ -11,17 +11,108 @@ public_folder: /images
 locale: sv
 
 collections:
+  - name: settings
+    label: Inställningar
+    label_singular: Inställning
+    folder: src/data/settings
+    create: false
+    format: json
+    fields:
+      - name: title
+        label: Titel
+        widget: string
+      - name: banner
+        label: Toppbild
+        widget: object
+        summary: 'Rubrik: "{{fields.heading}}", Bild: "{{fields.alt}}", Bildtext: "{{fields.caption}}"'
+        fields:
+          - label: Bild
+            name: image
+            widget: image
+            required: false
+          - label: Alt-text
+            name: alt
+            widget: string
+            required: false
+      - name: startPage
+        label: Startsida
+        widget: relation
+        collection: pages
+        value_field: title
+        search_fields: [title]
+        display_fields: [title]
+      - name: eventsPage
+        label: Evenemangssida
+        widget: relation
+        collection: pages
+        value_field: title
+        search_fields: [title]
+        display_fields: [title]
+      - name: newsPage
+        label: Nyhetssida
+        widget: relation
+        collection: pages
+        value_field: title
+        search_fields: [title]
+        display_fields: [title]
+      - name: footer
+        label: Sidfot
+        widget: list
+        hint: |
+          Dessa block visas i sidfoten på alla sidor. De hamnar sida vid sida.
+        types:
+          - substitute: text
+          - substitute: image
+
   - name: pages
     label: Sidor
     label_singular: Sida
     folder: src/data/pages
     create: true
-    slug: "{{titel}}"
     format: json
+    sortable_fields: [order]
+    summary: "{{fields.order}}: {{fields.title}}"
     fields:
       - { label: Titel, name: title, widget: string }
+      - name: order
+        label: Ordning
+        widget: number
+        required: false
+      - name: showInMenu
+        label: Visa i meny
+        widget: boolean
+        default: true
       - name: body
         label: Innehåll
+        widget: list
+        types:
+          - substitute: text
+          - substitute: image
+          - substitute: columns
+          - substitute: gallery
+
+  - name: events
+    label: Evenemang
+    label_singular: Evenemang
+    folder: src/data/events
+    create: true
+    format: json
+    summary: "{{fields.date | date('YYYY-MM-DD HH:mm')}}: {{fields.title}}"
+    fields:
+      - label: Titel
+        name: title
+        widget: string
+      - label: Datum
+        name: date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: HH:mm
+      - label: Utvald bild
+        name: thumbnail
+        widget: image
+        required: false
+      - label: Innehåll
+        name: body
         widget: list
         types:
           - substitute: text
@@ -33,8 +124,8 @@ collections:
     label: Nyheter
     label_singular: Nyhet
     folder: src/data/news
+    summary: "{{fields.date | date('YYYY-MM-DD HH:mm')}}: {{fields.title}}"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}"
     format: json
     fields:
       - { label: Titel, name: title, widget: string }

@@ -1,15 +1,7 @@
 import React from "react";
+import { CmsPage } from "../types/cms";
+import Page from "./Page";
 
-interface HomeProps {
-  title: string;
-  body: string;
-}
-
-const Home = (props: HomeProps) => (
-  <div>
-    <h1>{props.title}</h1>
-    <p>{props.body}</p>
-  </div>
-);
+const Home = (props: CmsPage) => <Page {...props} />;
 
 export default Home;

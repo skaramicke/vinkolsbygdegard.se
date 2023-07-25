@@ -1,0 +1,11 @@
+{
+  "showInMenu": true,
+  "title": "Evenemang",
+  "body": [
+    {
+      "type": "text",
+      "body": "Bygdegårdsföreningen ordnar olika evenemang under året så som Julgransplundring, Fiske-VM, Höst eller Vårfest, sen på midsommardagen ordnar vi även en trevlig familjekväll.\n\nDet kan även bli fler trevliga evenemang under året! Så som whiskeyprovning, kräftskivor, bakluckeloppis m.m."
+    }
+  ],
+  "order": 2
+}
