@@ -13,23 +13,23 @@ const Footer: React.FC<FooterProps> = ({ items }) => {
     if (!items.length || items.length < 1) return;
     switch (items.length) {
       case 1:
-        setGridStyle("grid grid-cols-1 gap-4");
+        setGridStyle("grid grid-cols-1");
         break;
 
       case 2:
-        setGridStyle("grid grid-cols-1 lg:grid-cols-2 gap-4");
+        setGridStyle("grid grid-cols-1 lg:grid-cols-2 lg:gap-4");
         break;
 
       case 3:
-        setGridStyle("grid grid-cols-1 lg:grid-cols-3 gap-4");
+        setGridStyle("grid grid-cols-1 lg:grid-cols-3 lg:gap-4");
         break;
 
       case 4:
-        setGridStyle("grid grid-cols-1 lg:grid-cols-4 gap-4");
+        setGridStyle("grid grid-cols-1 lg:grid-cols-4 lg:gap-4");
         break;
 
       case 5:
-        setGridStyle("grid grid-cols-1 lg:grid-cols-3 gap-4");
+        setGridStyle("grid grid-cols-1 lg:grid-cols-3 lg:gap-4");
         break;
       default:
         break;
