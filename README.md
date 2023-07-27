@@ -19,7 +19,7 @@
 
 ### Quick notes:
 
-1. The [CMS](https://vinkol.mikael.green/admin) is [Decap](https://decapcms.org) - [`docs`](https://decapcms.org/docs/intro/)
+1. The [CMS](https://vinkol.se/admin) is [Decap](https://decapcms.org) - [`docs`](https://decapcms.org/docs/intro/)
 2. The website is a [React](https://react.dev) app. - [`docs`](https://react.dev/learn)
 3. The hosting is Cloudflare Pages. - [`docs`](https://developers.cloudflare.com/pages)  
    Any changes to the `main` branch will trigger a new build and deploy.  
