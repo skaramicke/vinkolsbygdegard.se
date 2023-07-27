@@ -2,7 +2,7 @@ backend:
   name: github
   repo: skaramicke/vinkolsbygdegard.se
   branch: main
-  base_url: https://vinkol.mikael.green
+  base_url: https://vinkol.se
   auth_endpoint: /auth
 
 local_backend: true
