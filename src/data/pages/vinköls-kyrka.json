@@ -1,0 +1,17 @@
+{
+  "showInMenu": true,
+  "title": "Vinköls Kyrka",
+  "order": 11,
+  "body": [
+    {
+      "type": "image",
+      "heading": "Välkommen till Vinköls Kyrka",
+      "image": "/images/kyrka.jpg",
+      "alt": "Vinköls Kyrka"
+    },
+    {
+      "type": "text",
+      "body": "Kyrkan invigdes 1872 och är ritad av arkitekt Ernst Jakobsson. Byggmästare var Anders Pettersson.\n\nDen nya kyrkan ersatte en gammal medeltida kyrka som var belägen på den plats där Vinkölsgården nu ligger, nere i ”byn”. Kyrkan är byggd av granit i korsform med låga väggar och högt stigande tak.\n\nKorväggen genombryts av en grupp med fem lansettfönster, vilket ger ett gotiskt anslag. Denna fönstergrupp upprepas i mindre format i korsarmarna. I det nordvästra hörnet reser sig klocktornet där klockorna hänger fullt synliga. Över korsmitten står en smäcker lanternin med spira. 1937 anlades en mycket vacker skogskyrkogård omedelbart väster om kyrkan, den är väl värd ett besök!”\n\nVinköls kyrka tillhör **Ardala församling, Skara pastorat**."
+    }
+  ]
+}
