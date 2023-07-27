@@ -1,6 +1,6 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { CmsImage, CmsPage } from "../types/cms";
-import { useState } from "react";
 
 const pageListedInMenu = (page: CmsPage, startPage?: CmsPage) => {
   if (startPage && page.title === startPage.title) return false;
