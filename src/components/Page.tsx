@@ -16,8 +16,8 @@ const Page = ({
   children,
 }: PagePropsType) => (
   <div>
-    <BorderedHeading>
-      <h1 className="py-2 w-full md:w-auto text-3xl font-semibold text-light-text dark:text-dark-primary lg:text-4xl">
+    <BorderedHeading large>
+      <h1 className="pt-2 w-full md:w-auto text-3xl font-semibold text-light-text dark:text-dark-primary lg:text-4xl">
         {title}
       </h1>
     </BorderedHeading>

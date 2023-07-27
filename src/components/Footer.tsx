@@ -18,25 +18,25 @@ const Footer: React.FC<FooterProps> = ({ items }) => {
 
       case 2:
         setGridStyle(
-          "grid grid-cols-1 place-items-center items-start lg:grid-cols-2 lg:gap-4"
+          "grid grid-cols-1 place-items-center items-start md:grid-cols-2 md:gap-4"
         );
         break;
 
       case 3:
         setGridStyle(
-          "grid grid-cols-1 place-items-center items-start lg:grid-cols-3 lg:gap-4"
+          "grid grid-cols-1 place-items-center items-start md:grid-cols-3 md:gap-4"
         );
         break;
 
       case 4:
         setGridStyle(
-          "grid grid-cols-1 place-items-center items-start lg:grid-cols-4 lg:gap-4"
+          "grid grid-cols-1 place-items-center items-start md:grid-cols-4 md:gap-4"
         );
         break;
 
       case 5:
         setGridStyle(
-          "grid grid-cols-1 place-items-center items-start lg:grid-cols-3 lg:gap-4"
+          "grid grid-cols-1 place-items-center items-start md:grid-cols-3 md:gap-4"
         );
         break;
       default:
@@ -47,7 +47,7 @@ const Footer: React.FC<FooterProps> = ({ items }) => {
   if (!items.length || items.length < 1) return null;
 
   return (
-    <footer className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8 bg-light-secondary dark:bg-dark-secondary">
+    <footer className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 md:py-8 bg-light-secondary dark:bg-dark-secondary">
       <div className={gridStyle}>
         {items.map((item, i) => (
           <Content key={i} data={item} depth={0} />
