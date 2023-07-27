@@ -1,5 +1,6 @@
 import React from "react";
 import Content from "./Content";
+import { BorderedHeading } from "./BorderedHeading";
 
 type PagePropsType = {
   title: string;
@@ -15,9 +16,11 @@ const Page = ({
   children,
 }: PagePropsType) => (
   <div>
-    <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl">
-      {title}
-    </h1>
+    <BorderedHeading>
+      <h1 className="py-2 w-full md:w-auto text-3xl font-semibold text-light-text dark:text-dark-primary lg:text-4xl">
+        {title}
+      </h1>
+    </BorderedHeading>
     {subtitle && (
       <div className="text-center">
         <p className="text-lg">{subtitle}</p>

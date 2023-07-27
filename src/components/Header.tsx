@@ -13,30 +13,40 @@ type HeaderProps = {
   eventsPageTitle?: string;
   newsPageTitle?: string;
   pages?: CmsPage[];
+  isMenuOpen: boolean;
+  setIsMenuOpen: (isMenuOpen: boolean) => void;
 };
 
-const Header = ({ banner, startPage, pages }: HeaderProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+const Header = ({
+  banner,
+  startPage,
+  pages,
+  isMenuOpen,
+  setIsMenuOpen,
+}: HeaderProps) => {
   return (
-    <header className="container mx-auto max-w-screen-lg bg-lime-100 border-l border-r">
+    <header className="container mx-auto max-w-screen-lg bg-light-secondary dark:bg-dark-secondary">
       {banner && (
         <div className="flex items-center justify-center mb-5">
           <img src={banner.image} alt={banner.alt} className="w-full" />
         </div>
       )}
       <nav className="px-8 xl:px-5 pb-5 lb:py-8">
-        <div className="md:hidden flex md:justify-between">
+        <div className="md:hidden flex justify-between items-center">
           {startPage && (
             <>
-              <dialog open={isMenuOpen} className="mr-16">
-                <div className="flex flex-col items-center justify-center h-full">
+              <dialog
+                open={isMenuOpen}
+                className="fixed top-0 start-0 end-0 bottom-0 w-full h-full backdrop-blur"
+                style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+              >
+                <div className="flex flex-col items-center justify-center bg-light-secondary dark:bg-dark-secondary">
                   {startPage && (
                     <Link
                       to="/"
-                      className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500"
+                      className="px-5 py-2 text-lg font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
                     >
-                      <span>{startPage.title}</span>
+                      Hem
                     </Link>
                   )}
                   {pages &&
@@ -47,9 +57,9 @@ const Header = ({ banner, startPage, pages }: HeaderProps) => {
                         <Link
                           key={page.slug}
                           to={`/${page.slug}`}
-                          className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500"
+                          className="px-5 py-2 text-lg font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
                         >
-                          <span>{page.title}</span>
+                          {page.title}
                         </Link>
                       ))}
                 </div>
@@ -57,21 +67,24 @@ const Header = ({ banner, startPage, pages }: HeaderProps) => {
               <Link
                 key={startPage.slug}
                 to="/"
-                className="text-sm font-medium text-gray-600 hover:text-blue-500"
+                className="text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
               >
-                {startPage.title}
+                Hem
               </Link>
               <button
                 aria-label="Toggle Menu"
-                className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none md:hidden"
+                className="ml-auto rounded-md px-2 py-1 text-light-text focus:text-light-accent dark:text-dark-text focus:outline-none md:hidden"
                 id="headlessui-disclosure-button-:r0:"
                 type="button"
                 aria-expanded="false"
                 data-headlessui-state=""
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={(e) => {
+                  setIsMenuOpen(true);
+                  e.stopPropagation();
+                }}
               >
                 <svg
-                  className="h-6 w-6 fill-current"
+                  className="h-6 w-6 fill-light-text dark:fill-dark-text"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >
@@ -84,13 +97,13 @@ const Header = ({ banner, startPage, pages }: HeaderProps) => {
             </>
           )}
         </div>
-        <div className="hidden md:flex md:justify-between md:items-center gap-1">
+        <div className="hidden md:flex justify-between items-center gap-1">
           {startPage && (
             <Link
               to="/"
-              className="text-sm font-medium text-gray-600 hover:text-blue-500"
+              className="text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
             >
-              <span>{startPage.title}</span>
+              {startPage.title}
             </Link>
           )}
           {pages &&
@@ -101,9 +114,9 @@ const Header = ({ banner, startPage, pages }: HeaderProps) => {
                 <Link
                   key={page.slug}
                   to={`/${page.slug}`}
-                  className="text-sm font-medium text-gray-600 hover:text-blue-500"
+                  className="text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
                 >
-                  <span>{page.title}</span>
+                  {page.title}
                 </Link>
               ))}
         </div>
@@ -114,14 +127,14 @@ const Header = ({ banner, startPage, pages }: HeaderProps) => {
             <Link
               key={startPage.slug}
               to="/"
-              className="text-sm font-medium text-gray-600 hover:text-blue-500"
+              className="text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
             >
               {startPage.title}
             </Link>
           )}
           <button
             aria-label="Toggle Menu"
-            className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none md:hidden"
+            className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-accent focus:outline-none md:hidden"
             id="headlessui-disclosure-button-:r0:"
             type="button"
             aria-expanded="false"
@@ -148,9 +161,9 @@ const Header = ({ banner, startPage, pages }: HeaderProps) => {
                 <Link
                   key={page.slug}
                   to={`/${page.slug}`}
-                  className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500"
+                  className="px-5 py-2 text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
                 >
-                  <span>{page.title}</span>
+                  {page.title}
                 </Link>
               ))}
         </div>

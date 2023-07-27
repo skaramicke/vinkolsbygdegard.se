@@ -1,4 +1,4 @@
-section
+.disabled
   h1
     font-size: 2em
     font-weight: normal
@@ -34,8 +34,10 @@ section
     margin-bottom: 1rem
 
   a
-    color: #0000fb
     text-decoration: none
+    @apply text-light-accent
+    .theme-dark &
+      @apply text-dark-accent
 
     &:hover
       text-decoration: underline

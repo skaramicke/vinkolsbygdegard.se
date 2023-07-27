@@ -2,9 +2,10 @@ import React, { ReactNode } from "react";
 import Image from "./Image";
 import Gallery from "./Gallery";
 import { CmsBlock } from "../types/cms";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import StyledMarkdown from "./StyledMarkdown";
 import cx from "classnames";
 import Alignable from "../types/alignable";
+import { BorderedHeading } from "./BorderedHeading";
 
 type ContentPropsType = {
   data: CmsBlock | CmsBlock[];
@@ -51,22 +52,25 @@ const Content: React.FC<ContentPropsType & Alignable> = ({
   switch (data.type) {
     case "text":
       return (
-        <section className={cx("my-5", alignClass)} data-comment="text">
-          {heading}
-          <ReactMarkdown>{data.body}</ReactMarkdown>
+        <section className={cx("my-5 w-full", alignClass)} data-comment="text">
+          {heading && <BorderedHeading>{heading}</BorderedHeading>}
+          <StyledMarkdown>{data.body}</StyledMarkdown>
         </section>
       );
     case "image":
       return (
         <section className={cx("my-5", alignClass)} data-comment="image">
-          {heading}
+          {heading && <BorderedHeading>{heading}</BorderedHeading>}
           <Image {...data} />
         </section>
       );
     case "gallery":
       return (
-        <section className={cx("my-5", alignClass)} data-comment="gallery">
-          {heading}
+        <section
+          className={cx("my-5 w-full", alignClass)}
+          data-comment="gallery"
+        >
+          {heading && <BorderedHeading>{heading}</BorderedHeading>}
           <Gallery {...data} />
         </section>
       );
@@ -78,8 +82,11 @@ const Content: React.FC<ContentPropsType & Alignable> = ({
         ? `align-${data.rightAlign}`
         : "align-left";
       return (
-        <section className={cx("my-5", alignClass)} data-comment="columns">
-          {heading}
+        <section
+          className={cx("my-5 w-full", alignClass)}
+          data-comment="columns"
+        >
+          {heading && <BorderedHeading>{heading}</BorderedHeading>}
           <div className="flex gap-10">
             <div className={cx("w-1/2", alignLeftClass)}>
               <Content

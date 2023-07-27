@@ -42,6 +42,8 @@ function filterPages(
 }
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   const startPageTitle: string | undefined = (data.settings as CmsSettings[])[0]
     ?.startPage;
   let startPage: CmsPage | undefined;
@@ -69,7 +71,7 @@ function App() {
         <Route
           path="*"
           element={
-            <div>
+            <div onClick={(e) => setIsMenuOpen(false)}>
               <Header
                 startPage={startPage}
                 pages={filterPages(
@@ -78,8 +80,10 @@ function App() {
                   newsPageTitle
                 )}
                 banner={banner}
+                isMenuOpen={isMenuOpen}
+                setIsMenuOpen={setIsMenuOpen}
               />
-              <main className="container px-8 mx-auto xl:px-5 max-w-screen-lg py-5 lg:py-8 border-l border-r">
+              <main className="container px-8 mx-auto xl:px-5 max-w-screen-lg py-5 lg:py-8 border-l border-r border-light-secondary dark:border-dark-secondary">
                 <div className="max-w-2x1 mx-auto">
                   <Routes>
                     {startPage && (
