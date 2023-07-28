@@ -1,0 +1,51 @@
+{
+  "showInMenu": false,
+  "title": "Open Source",
+  "body": [
+    {
+      "type": "text",
+      "heading": "Vad är öppen källkod?",
+      "body": "Det innebär att vem som helst kan läsa koden som använts för att bygga applikationen (den här webbsidan, i det här fallet). Det innebär också att vem som helst som kan programmera kan vara med och programmera och bygga på projektet. Det kan vara vad som helst, allt från att fixa felstavningar i texten, justera marginalerna runt bilder eller bygga helt nya funktioner i applikationen."
+    },
+    {
+      "type": "columns",
+      "leftAlign": "left",
+      "rightAlign": "center",
+      "heading": "Hur fungerar den här sajten?",
+      "left": [
+        {
+          "type": "text",
+          "heading": "Koden finns på GitHub",
+          "body": "GitHub är en plattform för att dela med sig av och samarbeta kring programmeringskod.\n\nAdressen till projektet är <https://github.com/skaramicke/vinkolsbygdegard.se>"
+        },
+        {
+          "type": "text",
+          "heading": "Teknologier",
+          "body": "Sajten är byggd i [React](https://react.dev/) med [Typescript](https://www.typescriptlang.org/) som språk.\n\nDet finns ingen backend, om man inte räknar CloudFlares CDN-nätverk som en backend, eller GitHubs lagring kanske. Tekniken kallas \"serverless\", eller \"edge\".\n\nStyling i React-appen görs med [Tailwind CSS](https://tailwindcss.com/). Det betyder att allt (nästan) sätts med CSS-klasser direkt via elementens className-parameter."
+        },
+        {
+          "type": "text",
+          "heading": "Automatiskt bygge (CI/CD)",
+          "body": "När branchen \"main\" ändras i det projektet så publiceras den nya versionen via CloudFlare. Det är CloudFlare som märker att ändringen skett, så det finns inga workflows på GitHub i dagsläget.\n\nÄven när innehåll ska ändras sker publiceringen via CloudFlare. De som är administratörer för innehållet loggar in i sajtens CMS (<https://vinkol.se/admin/>) via sina GitHub-konton och ändrar i sidornas innehåll där. När de publicerar en ändring så lagras det nya innehållet direkt i main-branchen på GitHub och sedan bygger CloudFlare om vinkol.se.\n\nDu som utvecklare kan också använda CMS:et när du kör sajten lokalt. Då ändras bara filerna lokalt istället för på GitHub. Det går såklart också bra att redigera datafilerna direkt (de ligger i ./src/data) men de måste matcha det format som definieras i ./src/types/cms.ts"
+        }
+      ],
+      "right": [
+        {
+          "type": "image",
+          "image": "/images/octocat.png",
+          "alt": "Octo Cat som är Githubs logo"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "heading": "Hur kan jag hjälpa till?",
+      "body": "Så här ser processen ut för att få ut ditt bidrag på vinkol.se:\n\n1. Du loggar in på GitHub och tar dig till \\[projektet](https://github.com/skaramicke/vinkolsbygdegard.se) och skapar en \"Fork\". Detta är en komplett kopia av hela projektet som hamnar på ditt eget GitHub-konto.\n2. Du ändrar koden i din Fork tills du är nöjd.\n3. Till sist skapar du en Pull Request från din fork till huvudprojektet igen.\n4. Koden granskas av någon av projektets ägare (Mikael Grön, i dagsläget)\n5. Om den är bra och fungerar som den ska så läggs den in i main-branchen i projektet.\n6. CloudFlare upptäcker förändringen och bygger om vinkol.se automatiskt."
+    },
+    {
+      "type": "text",
+      "heading": "Hur jobbar man med projektet på sin dator?",
+      "body": "Börja med att installera [git](https://github.com/git-guides/install-git) och [yarn](https://yarnpkg.com/getting-started/install) på din dator.\n\nÖppna sedan en [terminal](https://sv.wikipedia.org/wiki/Terminalemulator).\n\nChecka sedan ut din fork med \\`git clone git@github.com:<ditt användarnamn>/vinkolsbygdegard.se\\`.\n\nGå sedan in i katalogen och skriv \\`yarn\\` och tryck enter. Då laddas alla javascript-paket ner och installeras i projektets \\`node_modules\\`-katalog.\n\nSkriv sedan \\`yarn start\\` för att öppna starta sajten lokalt. I din webbläsare borde adressen localhost:3000 öppnas automatiskt.\n\nLåt processen i terminalen vara igång så kommer sidan i webbläsaren automatiskt att uppdateras när, du gör kodändringar.\n\n**Viktigt:** Ändringar i datafilerna kräver att du startar om \\`yarn start\\` programmet eller i en ny terminal skriver \\`yarn prebuild\\`. Detta är för att CMSet lagrar alla datafiler separat men sajten använder en sammansatt version av dessa som skapas när \\`prebuild\\` körs."
+    }
+  ]
+}
