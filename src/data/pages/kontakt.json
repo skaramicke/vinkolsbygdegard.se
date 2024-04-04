@@ -14,9 +14,12 @@
       "right": [
         {
           "type": "text",
-          "body": "Bygg, -städ och underhåll:\n\nVi har skötselgrupper både ute och inne som har det yttersta ansvaret för att förbereda inför planerade arbetsdagar och dom har även koll på vad som behöver åtgärdas både ute och inne.\n\nUtegruppen tittar över våran gård och ser vad som behöver åtgärdas..\n\nInnegruppen tittar över så att det är fint i bygdegården och att det finns engångsmaterial, så som disktrasor, diskmedel, toalettpapper m.m\n\n**Skötselgrupp ute:**\n\n* Henry Pettersson, tel. 0511- 37 40 55\n* Klas-Olof Leth, tel. 0511- 37 40 78\n\n**Skötselgrupp inne:**\n\n* Lena Andersson, tel. 0511- 37 40 20"
+          "body": "För att säkerställa att vår bygdegård alltid är i bästa möjliga skick, har vi inrättat särskilda skötselgrupper som är dedikerade åt underhåll både inomhus och utomhus. Dessa grupper är kärnan i vårt arbete med att bevara och förbättra vår gemensamma mötesplats.\n\n**Utomhusgruppen** har det övergripande ansvaret för skötseln av vår gård. De genomför regelbundna inspektioner för att identifiera och åtgärda allt från trädgårdsarbete till reparationer som behövs utomhus.\n\n**Inomhusgruppen** fokuserar på att hålla insidan av bygdegården välkomnande och funktionell. De ser till att det finns nödvändigt engångsmaterial tillgängligt, såsom disktrasor, diskmedel, toalettpapper, och mer, för att försäkra att lokalen är redo för våra medlemmars och gästers användning.\n\n**Kontaktinformation till Skötselgrupperna:**\n\n**Utomhusgruppen:**  \n- Henry Pettersson, tel: 0511-37 40 55  \n- Klas-Olof Leth, tel: 0511-37 40 78  \n\n**Inomhusgruppen:**  \n- Lena Andersson, tel: 0511-37 40 20  \n\nDessa grupper koordinerar också förberedelserna inför planerade arbetsdagar och har en avgörande roll i att upprätthålla en trivsam och välkomnande miljö i och omkring vår bygdegård. Vi är tacksamma för deras insatser och uppmuntrar alla som är intresserade av att bidra till underhållsarbetet att ta kontakt.",
+          "heading": "Bygg, Städ och Underhållsgrupper"
         }
-      ]
+      ],
+      "rightAlign": "left",
+      "leftAlign": "left"
     }
   ]
 }
