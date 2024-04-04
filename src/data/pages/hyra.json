@@ -5,7 +5,41 @@
     {
       "type": "text",
       "heading": "Boka bygdegården",
-      "body": "**Kontakta**: Bengt Samuelsson\\\n**Telefon**: [076-040 29 86](tel://+46760402986)\n\n**Extra uthyrningsansvarig** i fall Bengt inte är anträffbar!\\\n**Ingela Johansson** [0704-09 34 58](tel://+46704093458)\n\nOBS! Köket och porslinet ingår i hyran\n\n## Priser för icke medlemmar\n\nStora salen 1000:- / lilla salen 600:-\n\n## Priser för medlemmar\n\nStora salen 600:- / lilla salen 400:-"
+      "body": "För att boka vår vackra lokal i Vinköls Bygdegård, vänligen kontakta oss genom följande uppgifter. Vi ser fram emot att hjälpa dig att planera ditt evenemang i våra trivsamma och välutrustade utrymmen."
+    },
+    {
+      "type": "text",
+      "body": "**Huvudansvarig för uthyrning:**  \nBengt Samuelsson  \n**Telefon:** [076-040 29 86](tel://+46760402986)\n\nSkulle du inte nå Bengt, står vår extra uthyrningsansvarig redo att assistera dig:\n\n**Extra uthyrningsansvarig:**  \nIngela Johansson  \n**Telefon:** [0704-09 34 58](tel://+46704093458)",
+      "heading": "Bokningskontakt"
+    },
+    {
+      "type": "text",
+      "body": "När du hyr någon av våra salar ingår full tillgång till vårt välutrustade kök samt porslin, vilket gör din tillställning både enklare och mer bekväm.",
+      "heading": "Inkluderat i din bokning"
+    },
+    {
+      "type": "columns",
+      "leftAlign": "left",
+      "rightAlign": "left",
+      "left": [
+        {
+          "type": "text",
+          "body": "- Stora salen: 1000 SEK  \n- Lilla salen: 600 SEK",
+          "heading": "För icke medlemmar"
+        }
+      ],
+      "heading": "Prisinformation",
+      "right": [
+        {
+          "type": "text",
+          "body": "- Stora salen: 600 SEK  \n- Lilla salen: 400 SEK",
+          "heading": "För medlemmar i Vinköls Bygdegårdsförening"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "body": "Vårt mål är att göra ditt evenemang så minnesvärt och bekymmersfritt som möjligt. Tveka inte att kontakta oss för mer information eller för att boka din tillställning idag. Vi ser fram emot att välkomna dig och dina gäster till Vinköls Bygdegård."
     }
   ],
   "order": 1
