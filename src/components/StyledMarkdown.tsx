@@ -2,6 +2,7 @@ import React from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Link } from "react-router-dom";
 import { BorderedHeading } from "./BorderedHeading";
+import remarkGfm from "remark-gfm";
 
 type StyledMarkdownProps = {
   children: string;
@@ -9,6 +10,8 @@ type StyledMarkdownProps = {
 
 const StyledMarkdown: React.FC<StyledMarkdownProps> = ({ children }) => (
   <ReactMarkdown
+    remarkPlugins={[remarkGfm]}
+    remarkRehypeOptions={{ passThrough: ["link"] }}
     components={{
       a: ({ node, ...props }) => {
         let Element: string | React.ComponentType<any> = "a";
