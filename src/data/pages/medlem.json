@@ -4,29 +4,37 @@
   "body": [
     {
       "type": "text",
-      "body": "Vi är väldigt tacksamma för alla som vill vara medlemmar i vår bygdegårdsförening, vi som är medlemmar får hyra lokalerna till reducerat pris, och som medlem får du även reducerat pris på div. evenemang.\n\nVi har även en mail i bygdegårdsföreningen och till alla som är med på maillistan får div. informationer om bygdegården så som fester aktiviteter m.m. eller om lite annat som kan hända i Vinköl, ni får även ta del av en hel del information som kommer från Skara Kommun, eller andra bygdegårdar runt om Vinköl. Se mailadressen nedan!"
-    },
-    {
-      "type": "columns",
-      "left": [
-        {
-          "type": "text",
-          "body": "Det är tack vare er medlemmar som vi kan ha vår fina bygdegård kvar i bygden.\\\n\\\nVill ni bli medlem så betalar ni in på bankgiro 260-9188\\\n(glöm inte att skriva in ert namn och efternamn)\\\n\\\nDu, din familj eller din förening kan bli medlem.\\\n200 kr – person / 500 kr – familj"
-        }
-      ],
-      "right": [
-        {
-          "type": "image",
-          "image": "/images/member.png",
-          "alt": "Bli medlem nu!",
-          "caption": "Bli medlem nu"
-        }
-      ]
+      "body": "Att ansluta sig till Vinköls Bygdegårdsförening är inte bara ett sätt att stödja vår värdefulla gemenskapsplats, det är ett steg in i hjärtat av vårt samhälle. Vi välkomnar varmt alla som önskar bli en del av vår förening, vars medlemmar njuter av en rad förmåner, däribland reducerade priser på lokalhyra och diverse evenemang som arrangeras under året."
     },
     {
       "type": "text",
-      "body": "Skriv ett mail till [vinkolsbygdegard@gmail.com](mailto:vinkolsbygdegard@gmail.com) att du vill komma med på listan så ordnar vi det!",
-      "heading": "Anmälan till maillista"
+      "heading": "Medlemsförmåner",
+      "body": "Som medlem i vår förening blir du en viktig del av ett nätverk som inte bara binder samman bygden utan även stärker dess kulturella och sociala struktur. Du får tillgång till förmånliga priser på uthyrning av våra lokaler, vilket gör ditt nästa evenemang både enklare och mer prisvärt. Dessutom erbjuder vi rabatter på olika evenemang som hålls i bygdegården, allt från traditionella fester till nyskapande workshops och föreläsningar."
+    },
+    {
+      "type": "text",
+      "heading": "Håll dig uppdaterad",
+      "body": "Vår maillista är ett ovärderligt verktyg för kommunikation. Genom att anmäla dig håller du dig uppdaterad om allt som händer i och kring bygdegården – från festligheter och aktiviteter till annan viktig information som berör vårt område. Du får även tillgång till nyheter från Skara Kommun och information om händelser i andra bygdegårdar runt om Vinköl."
+    },
+    {
+      "type": "text",
+      "heading": "Bli en del av oss",
+      "body": "Varje medlem bidrar till att vi kan fortsätta att upprätthålla och utveckla vår bygdegård, en plats som berikar vår bygd och skapar mötesplatser för alla åldrar och intressen. Det är tack vare er, våra medlemmar, som denna viktiga plats kan fortsätta att vara en central punkt i vårt gemensamma liv.\n\n"
+    },
+    {
+      "type": "text",
+      "heading": "Medlemsavgifter",
+      "body": "| **Typ**           | **Pris / år**                    |\n| ----------------- | -------------------------------- |\n| Personlig medlem  | 200kr                            |\n| Familjemedlemskap | 500kr                            |\n| Föreningar        | Kontakta oss för mer information |"
+    },
+    {
+      "type": "text",
+      "heading": "Hur ansluter du?",
+      "body": "Att bli medlem är enkelt. Betala din medlemsavgift via bankgiro **260-9188**. Kom ihåg att ange ditt namn och efternamn så att vi vet vem den fantastiska nya medlemmen är!"
+    },
+    {
+      "type": "text",
+      "heading": "Anmälan till vår maillista",
+      "body": "Vill du ha löpande information direkt till din inkorg? Skicka ett mail till [vinkolsbygdegard@gmail.com](mailto:vinkolsbygdegard@gmail.com?subject=Maillistan&body=Hej,%0D%0A%0D%0AJag%20vill%20gärna%20vara%20med%20på%20maillistan,%20tack.%0D%0A%0D%0AMed%20vänliga%20hälsningar,%0D%0AFörnamn%20Efternamn) med ditt namn och ett meddelande om att du vill läggas till på vår maillista. Vi ser till att du inte missar något viktigt.\n\nVi ser fram emot att välkomna dig in i gemenskapen i Vinköls Bygdegårdsförening. Tillsammans skapar vi en ännu ljusare framtid för vår bygd!"
     }
   ],
   "order": 3
