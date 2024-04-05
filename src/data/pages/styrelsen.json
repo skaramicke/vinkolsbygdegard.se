@@ -8,7 +8,28 @@
       "left": [
         {
           "type": "text",
-          "body": "### Ordförande:\n\nFredrik Bengtsson\n\n### Ledamöter:\n\nLinda Garyd Berglund, Robert Holmström, Bo Thörnberg, Lena Jansson, Leif Hildingsson och Ingela Johansson\n\n### Suppleanter:\n\nJenny Jacobsson, Niklas Ullberg, Jenny Elwing, Karl-Olof Ullberg och Kent Karlsson"
+          "body": "Fredrik Bengtsson",
+          "heading": "Ordförande"
+        },
+        {
+          "type": "text",
+          "body": "Fredrik Bengtsson, Lena Jansson, Robert Holmström, Leif Hildingsson, Ingela Johansson, Linda Garyd Berglund och Annelie Vaske",
+          "heading": "Ledamöter"
+        },
+        {
+          "type": "text",
+          "body": "Jenny Elwing, Jenny Jacobsson, Niklas Ullberg, Bengt Samuelsson och Mikael Grön",
+          "heading": "Suppleanter"
+        },
+        {
+          "type": "text",
+          "body": "Mikael Jansson och Stefan Berglund",
+          "heading": "Valberedningen"
+        },
+        {
+          "type": "text",
+          "body": "Henry Peterson och Klas-Åke Jansson",
+          "heading": "Revisorer"
         }
       ],
       "right": [
