@@ -50,7 +50,7 @@ const Footer: React.FC<FooterProps> = ({ items }) => {
     <footer className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 md:py-8 bg-light-secondary dark:bg-dark-secondary">
       <div className={gridStyle}>
         {items.map((item, i) => (
-          <Content key={i} data={item} depth={0} />
+          <Content key={i} data={item} depth={0} onDark />
         ))}
       </div>
     </footer>

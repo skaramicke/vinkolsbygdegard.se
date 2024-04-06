@@ -11,7 +11,6 @@ type DateItemListPropsType = {
   hide?: hideByTimeType;
 };
 
-// Print date in user locale from ISO date string
 const printDate = (date: string) => {
   return (
     new Date(date).toLocaleDateString("sv-SE") +
@@ -25,7 +24,7 @@ const DateItemList = ({
   sortOrder,
   hide = "none",
 }: DateItemListPropsType) => (
-  <div className="flex flex-col">
+  <div className="flex flex-col space-y-4">
     {items
       .sort((a, b) => {
         switch (sortOrder) {
@@ -48,12 +47,24 @@ const DateItemList = ({
         }
       })
       .map((item) => (
-        <div key={item.slug} className="flex flex-col">
-          <div className="flex flex-row justify-between">
-            <h2 className="text-xl font-semibold">{item.title}</h2>
-            <p className="text-sm">{printDate(item.date)}</p>
+        <div
+          key={item.slug}
+          className="bg-white shadow-lg rounded-lg overflow-hidden"
+        >
+          {item.thumbnail && (
+            <img
+              src={item.thumbnail}
+              alt={item.title}
+              className="w-full h-48 object-cover object-center"
+            />
+          )}
+          <div className="p-4">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-xl font-bold text-gray-800">{item.title}</h2>
+              <p className="text-sm text-gray-600">{printDate(item.date)}</p>
+            </div>
+            <Content data={item.body} depth={1} />
           </div>
-          <Content data={item.body} depth={1} />
         </div>
       ))}
   </div>

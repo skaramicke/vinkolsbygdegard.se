@@ -10,12 +10,14 @@ import { BorderedHeading } from "./BorderedHeading";
 type ContentPropsType = {
   data: CmsBlock | CmsBlock[];
   depth: number | undefined;
+  onDark?: boolean;
 };
 
 const Content: React.FC<ContentPropsType & Alignable> = ({
   data,
   depth = 0,
   align,
+  onDark = false,
 }) => {
   const alignClass = align ? `align-${align}` : "align-left";
 
@@ -26,6 +28,7 @@ const Content: React.FC<ContentPropsType & Alignable> = ({
         data={content}
         depth={depth}
         align={align}
+        onDark={onDark}
       />
     ));
   }
@@ -35,16 +38,48 @@ const Content: React.FC<ContentPropsType & Alignable> = ({
   if (data.heading) {
     switch (depth) {
       case 0:
-        heading = <h2 className="text-2xl font-semibold">{data.heading}</h2>;
+        heading = (
+          <h2
+            className={`text-2xl font-semibold ${
+              onDark ? "text-light-background" : "text-light-text"
+            }`}
+          >
+            {data.heading}
+          </h2>
+        );
         break;
       case 1:
-        heading = <h3 className="text-xl font-semibold">{data.heading}</h3>;
+        heading = (
+          <h3
+            className={`text-xl font-semibold ${
+              onDark ? "text-light-background" : "text-light-text"
+            }`}
+          >
+            {data.heading}
+          </h3>
+        );
         break;
       case 2:
-        heading = <h4 className="text-lg font-semibold">{data.heading}</h4>;
+        heading = (
+          <h4
+            className={`text-lg font-semibold ${
+              onDark ? "text-light-background" : "text-light-text"
+            }`}
+          >
+            {data.heading}
+          </h4>
+        );
         break;
       default:
-        heading = <h5 className="text-base font-semibold">{data.heading}</h5>;
+        heading = (
+          <h5
+            className={`text-base font-semibold ${
+              onDark ? "text-light-background" : "text-light-text"
+            }`}
+          >
+            {data.heading}
+          </h5>
+        );
         break;
     }
   }
@@ -54,7 +89,7 @@ const Content: React.FC<ContentPropsType & Alignable> = ({
       return (
         <section className={cx("my-5 w-full", alignClass)} data-comment="text">
           {heading && <BorderedHeading>{heading}</BorderedHeading>}
-          <StyledMarkdown>{data.body}</StyledMarkdown>
+          <StyledMarkdown onDark={onDark}>{data.body}</StyledMarkdown>
         </section>
       );
     case "image":

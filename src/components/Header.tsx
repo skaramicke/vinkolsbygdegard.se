@@ -44,7 +44,7 @@ const Header = ({
                   {startPage && (
                     <Link
                       to="/"
-                      className="px-5 py-2 text-lg font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
+                      className="px-5 py-2 text-lg font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
                     >
                       Hem
                     </Link>
@@ -57,7 +57,7 @@ const Header = ({
                         <Link
                           key={page.slug}
                           to={`/${page.slug}`}
-                          className="px-5 py-2 text-lg font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
+                          className="px-5 py-2 text-lg font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
                         >
                           {page.title}
                         </Link>
@@ -67,13 +67,13 @@ const Header = ({
               <Link
                 key={startPage.slug}
                 to="/"
-                className="text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
+                className="text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
               >
                 Hem
               </Link>
               <button
                 aria-label="Toggle Menu"
-                className="ml-auto rounded-md px-2 py-1 text-light-text focus:text-light-accent dark:text-dark-text focus:outline-none md:hidden"
+                className="ml-auto rounded-md px-2 py-1 text-light-background focus:text-light-accent dark:text-dark-text focus:outline-none md:hidden"
                 id="headlessui-disclosure-button-:r0:"
                 type="button"
                 aria-expanded="false"
@@ -101,7 +101,7 @@ const Header = ({
           {startPage && (
             <Link
               to="/"
-              className="text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
+              className="text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
             >
               {startPage.title}
             </Link>
@@ -114,7 +114,7 @@ const Header = ({
                 <Link
                   key={page.slug}
                   to={`/${page.slug}`}
-                  className="text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
+                  className="text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
                 >
                   {page.title}
                 </Link>
@@ -127,7 +127,7 @@ const Header = ({
             <Link
               key={startPage.slug}
               to="/"
-              className="text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
+              className="text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
             >
               {startPage.title}
             </Link>
@@ -161,7 +161,7 @@ const Header = ({
                 <Link
                   key={page.slug}
                   to={`/${page.slug}`}
-                  className="px-5 py-2 text-sm font-medium text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
+                  className="px-5 py-2 text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
                 >
                   {page.title}
                 </Link>

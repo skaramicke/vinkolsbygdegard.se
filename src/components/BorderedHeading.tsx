@@ -13,8 +13,8 @@ export const BorderedHeading: React.FC<BorderedHeadingProps> = ({
     {children}
     <div
       className={cx(
-        " bg-light-accent dark:bg-dark-accent w-full h-1 bottom-0",
-        large ? "h-2" : "h-1"
+        " bg-light-accent dark:bg-dark-accent w-full h-0.5 bottom-0",
+        large ? "h-1" : "h-0.5"
       )}
     />
   </>
