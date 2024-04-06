@@ -1,10 +1,36 @@
 {
-  "date": "2023-07-01T16:00:00.000Z",
+  "date": "2024-06-29T16:00:00.000Z",
   "title": "VM i Mete",
   "body": [
     {
       "type": "text",
-      "body": "Vi samlas vid dammen på berget i Vinköl, ni får ta med metspö, mask, mat, dryck, stol el. filt.\n\nDet finns grillar. Vi tävlingsmetar i 1 timma och när alla anmält sig går startskottet, efter metet är det prisutdelning i olika kategorier, vi har även lotteri. Entré vuxen 65kr, barn 35 kr, för medlemmar vuxen 50kr, barn 20 kr. Vid frågor ring Fredrik Bengtsson 070-574 01 50 eller Erik Lorentzon 070-294 74 20."
+      "body": "Bland höjdpunkterna i vår kalender finns Fiske-VM, en spännande tävling där både erfarna fiskare och nybörjare samlas vid vattnet för en dag fylld av sportslig spänning och vänlig tävlan. Höst- och Vårfesten markerar årstidernas skifte med musik, dans och gemenskap, och ger byborna en chans att komma samman och fira det sköna i varje ny början\n\nVi samlas vid dammen på berget i Vinköl, ni får ta med metspö, mask, mat, dryck, stol el. filt. Det finns grillar. Vi tävlingsmetar i 1 timme och när alla har anmält sig går startskottet. Efter metet är det prisutdelning i olika kategorier. Vi har även lotterier!"
+    },
+    {
+      "type": "columns",
+      "leftAlign": "left",
+      "rightAlign": "left",
+      "heading": "Entre",
+      "left": [
+        {
+          "type": "text",
+          "heading": "Icke medlem",
+          "body": "Vuxen: 65kr\\\nBarn: 35kr"
+        }
+      ],
+      "right": [
+        {
+          "type": "text",
+          "heading": "Medlem",
+          "body": "Vuxen: 50kr\\\nBarn: 20kr"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "heading": "Vid frågor",
+      "body": "Fredrik Bengtsson: 070-574 01 50\\\nErik Lorentzon: 070-294 74 20"
     }
-  ]
+  ],
+  "thumbnail": "/images/5b9a0c8d-1fef-41b1-b520-6e5e17ca7eca.webp"
 }

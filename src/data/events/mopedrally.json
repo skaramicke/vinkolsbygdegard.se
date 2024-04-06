@@ -1,10 +1,16 @@
 {
-  "date": "2023-07-29T08:00:00.000Z",
+  "date": "2024-06-01T08:00:00.000Z",
   "title": "Mopedrally",
   "body": [
     {
       "type": "text",
-      "body": "Vi samlas och startar i bygdegården.\n\nVi åker tvåhjuligt på max 100 kubik, startavgiften är 100:- det kommer lottas ut priser på startkortet.\n\nVid målgången serveras det korv med bröd.\n\nArrangörer är Claes Brodén och Mikael Jansson 070-838 57 47."
+      "body": "Även i år kommer vårt spännande Mopedrally, där entusiaster får chansen att visa upp sina klenoder och delta i en rallytävling genom byns natursköna omgivningar."
+    },
+    {
+      "type": "text",
+      "body": "Start vid bygdegården och vi åker tvåhjuligt på max 100 kubik. Startavgift 100:- ",
+      "heading": "Detaljer"
     }
-  ]
+  ],
+  "thumbnail": "/images/mopedrally.png"
 }

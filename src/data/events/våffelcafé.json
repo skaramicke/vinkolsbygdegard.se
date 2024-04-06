@@ -1,0 +1,16 @@
+{
+  "date": "2024-09-29T13:00:00.000Z",
+  "title": "Våffelcafé",
+  "thumbnail": "/images/waffles.jpg",
+  "body": [
+    {
+      "type": "text",
+      "body": "Öppet för alla som längtar efter en stund av avkoppling och gemenskap, erbjuder våffelcaféet en mysig miljö där man kan njuta av dessa älskade svenska klassiker, toppade med sylt, grädde, eller varför inte båda?\n\nKom gärna och mingla och få en mysig eftermiddag med oss och ät några goda våfflor."
+    },
+    {
+      "type": "text",
+      "heading": "Arrangörer",
+      "body": "Jenny Jacobsson, Annelie Vaske och Ingela Johansson 070-409 34 58"
+    }
+  ]
+}
