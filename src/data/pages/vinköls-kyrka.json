@@ -4,14 +4,15 @@
   "order": 11,
   "body": [
     {
-      "type": "image",
-      "heading": "Välkommen till Vinköls Kyrka",
-      "image": "/images/kyrka.jpg",
-      "alt": "Vinköls Kyrka"
+      "type": "text",
+      "body": "Vinköls Kyrka, ett arkitektoniskt mästerverk, stod klar för invigning 1872 och är ett levande exempel på den tidens kyrkoarkitektur. Designad av den framstående arkitekten Ernst Jakobsson och byggd under överinseende av byggmästare Anders Pettersson, står kyrkan som en ståtlig symbol för både andlig tillflykt och historisk betydelse.\n\nDenna imponerande byggnad i korsform ersatte en äldre medeltida kyrka, en klenod som en gång prydde samma mark där Vinkölsgården nu ligger, i hjärtat av byn.\n\nDet som verkligen ger Vinköls Kyrka dess karakteristiska gotiska flair är korväggens grupp av fem lansettfönster, en detalj som inte bara släpper in ett flöde av naturligt ljus utan också lägger till en estetisk grace. Denna distinkta fönstergrupp återfinns även i en mindre skala i kyrkans korsarmar, vilket förstärker den gotiska designens genomgående tema.\n\nI kyrkans nordvästra hörn reser sig ett majestätiskt klocktorn, där klockorna inte bara höras utan även ses, vilket lägger till en visuell komponent till deras klingande kall. Över kyrkans korsmitten tronar en elegant lanternin, kronad med en spira, som bjuder in himlens ljus och tjänar som en himmelsk vägvisare.\n\nÅr 1937 blev kyrkan även grann med en vackert anlagd skogskyrkogård, placerad omedelbart väster om byggnaden. Denna kyrkogård, med sin lugna och respektfulla atmosfär, erbjuder inte bara en sista vila för de avlidna utan är också en plats för reflektion och skönhet, väl värd ett besök.\n\nTillhörande Ardala församling inom Skara pastorat, står Vinköls Kyrka inte bara som ett religiöst centrum utan även som en viktig kulturell och historisk tillgång för samhället. Dess rika historia och ståtliga arkitektur gör den till en viktig del av områdets kulturarv, en plats för både gudstjänst och eftertanke."
     },
     {
-      "type": "text",
-      "body": "Vinköls Kyrka, ett arkitektoniskt mästerverk, stod klar för invigning 1872 och är ett levande exempel på den tidens kyrkoarkitektur. Designad av den framstående arkitekten Ernst Jakobsson och byggd under överinseende av byggmästare Anders Pettersson, står kyrkan som en ståtlig symbol för både andlig tillflykt och historisk betydelse.\n\nDenna imponerande byggnad i korsform ersatte en äldre medeltida kyrka, en klenod som en gång prydde samma mark där Vinkölsgården nu ligger, i hjärtat av byn. Byggd med robust granit, skiljer sig kyrkan med sina låga väggar och det markant stigande taket, en struktur som skapar en dramatisk och himlastormande profil mot landskapet.\n\nDet som verkligen ger Vinköls Kyrka dess karakteristiska gotiska flair är korväggens grupp av fem lansettfönster, en detalj som inte bara släpper in ett flöde av naturligt ljus utan också lägger till en estetisk grace. Denna distinkta fönstergrupp återfinns även i en mindre skala i kyrkans korsarmar, vilket förstärker den gotiska designens genomgående tema.\n\nI kyrkans nordvästra hörn reser sig ett majestätiskt klocktorn, där klockorna inte bara höras utan även ses, vilket lägger till en visuell komponent till deras klingande kall. Över kyrkans korsmitten tronar en elegant lanternin, kronad med en spira, som bjuder in himlens ljus och tjänar som en himmelsk vägvisare.\n\nÅr 1937 blev kyrkan även grann med en vackert anlagd skogskyrkogård, placerad omedelbart väster om byggnaden. Denna kyrkogård, med sin lugna och respektfulla atmosfär, erbjuder inte bara en sista vila för de avlidna utan är också en plats för reflektion och skönhet, väl värd ett besök.\n\nTillhörande Ardala församling inom Skara pastorat, står Vinköls Kyrka inte bara som ett religiöst centrum utan även som en viktig kulturell och historisk tillgång för samhället. Dess rika historia och ståtliga arkitektur gör den till en viktig del av områdets kulturarv, en plats för både gudstjänst och eftertanke."
+      "type": "image",
+      "heading": "",
+      "image": "/images/kyrka.jpg",
+      "alt": "Vinköls Kyrka",
+      "caption": "Byggd med robust granit, skiljer sig kyrkan med sina låga väggar och det markant stigande taket, en struktur som skapar en dramatisk och himlastormande profil mot landskapet."
     }
   ]
 }
