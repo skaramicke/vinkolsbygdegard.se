@@ -4,7 +4,12 @@
   "body": [
     {
       "type": "text",
-      "body": "Klockan 15 till 17\n\nVi tycker det var kul att baka våfflor, så kom gärna och få en mysig eftermiddag med oss. Arrangörer är Jenny Jacobsson, Annelie Vaske och Ingela Johansson 070-409 34 58"
+      "body": "Vi tycker det var kul att baka våfflor, så kom gärna och få en mysig eftermiddag med oss."
+    },
+    {
+      "type": "text",
+      "body": " Jenny Jacobsson, Annelie Vaske och Ingela Johansson [070-409 34 58](tel:0704093458)",
+      "heading": "Arrangörer"
     }
   ],
   "endDate": "2025-09-21T17:00"
