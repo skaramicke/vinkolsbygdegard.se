@@ -97,7 +97,7 @@ collections:
     folder: src/data/events
     create: true
     format: json
-    summary: "{{fields.date | date('YYYY-MM-DD HH:mm')}}: {{fields.title}}"
+    summary: "{{fields.date | date('YYYY-MM-DD-HH-mm')}}-{{fields.title}}"
     fields:
       - label: Titel
         name: title
@@ -107,6 +107,12 @@ collections:
         widget: datetime
         date_format: YYYY-MM-DD
         time_format: HH:mm
+      - label: Slutdatum
+        name: endDate
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: HH:mm
+        required: false
       - label: Utvald bild
         name: thumbnail
         widget: image

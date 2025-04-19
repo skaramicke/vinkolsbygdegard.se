@@ -11,12 +11,43 @@ type DateItemListPropsType = {
   hide?: hideByTimeType;
 };
 
-const printDate = (date: string) => {
-  return (
-    new Date(date).toLocaleDateString("sv-SE") +
-    " " +
-    new Date(date).toLocaleTimeString("sv-SE")
-  );
+const printDate = (date: string, endDate?: string) => {
+  const dateObj = new Date(date);
+  const currentYear = new Date().getFullYear();
+  const year = dateObj.getFullYear();
+
+  // Format time as HH:mm
+  const time = dateObj.toLocaleTimeString("sv-SE", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  // Format date based on whether it's current year
+  const dateStr =
+    year === currentYear
+      ? dateObj.toLocaleDateString("sv-SE", {
+          day: "2-digit",
+          month: "2-digit",
+        })
+      : dateObj.toLocaleDateString("sv-SE", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+
+  let result = `${dateStr} ${time}`;
+
+  // Add end time if it exists
+  if (endDate) {
+    const endDateObj = new Date(endDate);
+    const endTime = endDateObj.toLocaleTimeString("sv-SE", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    result += ` - ${endTime}`;
+  }
+
+  return result;
 };
 
 const DateItemList = ({
@@ -61,7 +92,9 @@ const DateItemList = ({
           <div className="p-4">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold text-gray-800">{item.title}</h2>
-              <p className="text-sm text-gray-600">{printDate(item.date)}</p>
+              <p className="text-sm text-gray-600">
+                {printDate(item.date, (item as CmsEvent).endDate)}
+              </p>
             </div>
             <Content data={item.body} depth={1} />
           </div>

@@ -47,6 +47,7 @@ export type CmsEvent = {
   slug: string;
   title: string;
   date: string;
+  endDate?: string;
   thumbnail?: string | null | undefined;
   body: CmsBlock[];
 };
