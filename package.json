@@ -47,8 +47,8 @@
   },
   "scripts": {
     "prebuild": "ts-node scripts/manifest.ts & ts-node scripts/decap-config.ts",
-    "build": "craco build",
-    "start": "craco start",
+    "build": "npm run prebuild && craco build",
+    "start": "npm run prebuild && craco start",
     "test": "craco test",
     "eject": "react-scripts eject"
   },

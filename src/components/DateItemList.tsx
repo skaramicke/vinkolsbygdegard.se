@@ -44,7 +44,25 @@ const printDate = (date: string, endDate?: string) => {
       hour: "2-digit",
       minute: "2-digit",
     });
-    result += ` - ${endTime}`;
+
+    // Check if start and end dates are on the same day
+    const isSameDay =
+      dateObj.getFullYear() === endDateObj.getFullYear() &&
+      dateObj.getMonth() === endDateObj.getMonth() &&
+      dateObj.getDate() === endDateObj.getDate();
+
+    if (isSameDay) {
+      // If same day, only show the end time
+      result = `${dateStr} ${time} - ${endTime}`;
+    } else {
+      // If different days, show full end date and time
+      const endDateStr = endDateObj.toLocaleDateString("sv-SE", {
+        day: "2-digit",
+        month: "2-digit",
+        year: endDateObj.getFullYear() === currentYear ? undefined : "numeric",
+      });
+      result = `${dateStr} ${time} - ${endDateStr} ${endTime}`;
+    }
   }
 
   return result;
@@ -95,7 +113,7 @@ const DateItemList = ({
               <p className="text-sm text-gray-600">
                 {printDate(
                   item.date,
-                  "endDate" in item ? item.endDate : undefined
+                  "endDate" in item && item.endDate ? item.endDate : undefined
                 )}
               </p>
             </div>
