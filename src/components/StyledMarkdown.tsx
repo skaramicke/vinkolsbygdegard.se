@@ -1,10 +1,9 @@
+import cx from "classnames";
 import React from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Link } from "react-router-dom";
-import { BorderedHeading } from "./BorderedHeading";
 import remarkGfm from "remark-gfm";
-import cx from "classnames";
-import { link } from "fs";
+import { BorderedHeading } from "./BorderedHeading";
 
 type StyledMarkdownProps = {
   children: string;

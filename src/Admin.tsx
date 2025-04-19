@@ -1,6 +1,6 @@
-// Admin.js
+// Admin.tsx
 import React from "react";
-import CMS from "netlify-cms-app";
+import CMS from "decap-cms-app";
 
 export default function Admin() {
   CMS.init();

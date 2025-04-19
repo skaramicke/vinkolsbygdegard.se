@@ -13,28 +13,33 @@ type ContentPropsType = {
   onDark?: boolean;
 };
 
-const Content: React.FC<ContentPropsType & Alignable> = ({
+// Remove the React.FC type annotation
+const Content = ({
   data,
   depth = 0,
   align,
   onDark = false,
-}) => {
+}: ContentPropsType & Alignable) => {
   const alignClass = align ? `align-${align}` : "align-left";
 
   if (Array.isArray(data)) {
-    return data.map((content, i) => (
-      <Content
-        key={`content row ${i}`}
-        data={content}
-        depth={depth}
-        align={align}
-        onDark={onDark}
-      />
-    ));
+    return (
+      <>
+        {data.map((content, i) => (
+          <Content
+            key={`content row ${i}`}
+            data={content}
+            depth={depth}
+            align={align}
+            onDark={onDark}
+          />
+        ))}
+      </>
+    );
   }
 
+  // Rest of your component stays the same
   let heading: ReactNode = null;
-
   if (data.heading) {
     switch (depth) {
       case 0:

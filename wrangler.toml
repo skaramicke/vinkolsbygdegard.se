@@ -1,0 +1,9 @@
+[build]
+command = "npm run build"
+publish = "build"
+
+[build.environment]
+NODE_VERSION = "20.18.0"
+
+[site]
+bucket = "build" 
