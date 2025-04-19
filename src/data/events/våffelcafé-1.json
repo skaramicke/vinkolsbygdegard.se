@@ -1,10 +1,11 @@
 {
-  "date": "2025-09-21T13:00:50.741Z",
+  "date": "2025-09-21T15:00",
   "title": "Våffelcafé",
   "body": [
     {
       "type": "text",
       "body": "Klockan 15 till 17\n\nVi tycker det var kul att baka våfflor, så kom gärna och få en mysig eftermiddag med oss. Arrangörer är Jenny Jacobsson, Annelie Vaske och Ingela Johansson 070-409 34 58"
     }
-  ]
+  ],
+  "endDate": "2025-09-21T17:00"
 }
