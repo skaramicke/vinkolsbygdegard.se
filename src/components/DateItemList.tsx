@@ -93,7 +93,10 @@ const DateItemList = ({
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-bold text-gray-800">{item.title}</h2>
               <p className="text-sm text-gray-600">
-                {printDate(item.date, (item as CmsEvent).endDate)}
+                {printDate(
+                  item.date,
+                  "endDate" in item ? item.endDate : undefined
+                )}
               </p>
             </div>
             <Content data={item.body} depth={1} />
