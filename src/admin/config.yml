@@ -117,6 +117,17 @@ collections:
         name: thumbnail
         widget: image
         required: false
+      - label: Kategori
+        name: category
+        widget: select
+        required: false
+        options:
+          - { label: "Städdag (vår)", value: "vårstäd" }
+          - { label: "Grillkväll", value: "grillkväll" }
+          - { label: "Våffelcafé", value: "våffla" }
+          - { label: "Tomtepromenad", value: "tomte" }
+          - { label: "Historia", value: "historia" }
+          - { label: "Städdag (höst)", value: "städ" }
       - label: Arrangörens namn
         name: organizerName
         widget: string

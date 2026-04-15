@@ -49,6 +49,7 @@ export type CmsEvent = {
   date: string;
   endDate?: string;
   thumbnail?: string | null | undefined;
+  category?: "vårstäd" | "grillkväll" | "våffla" | "tomte" | "historia" | "städ";
   organizerName?: string;
   organizerPhone?: string;
   body: CmsBlock[];

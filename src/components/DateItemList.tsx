@@ -1,6 +1,7 @@
 import React from "react";
 import { CmsEvent, CmsNewsArticle } from "../types/cms";
 import Content from "./Content";
+import CategoryThumbnail, { EventCategory } from "./CategoryThumbnail";
 
 type SortOrderType = "asc" | "desc";
 type hideByTimeType = "none" | "past" | "future";
@@ -142,7 +143,7 @@ const DateItemList = ({
                 </div>
               </div>
               <div className="min-w-0 relative z-10">
-                {item.thumbnail && (
+                {item.thumbnail ? (
                   <div className="event-thumb mb-3 -mt-1 border border-light-stone/60 overflow-hidden">
                     <img
                       src={item.thumbnail}
@@ -150,7 +151,11 @@ const DateItemList = ({
                       className="w-full h-40 md:h-48 object-cover object-center"
                     />
                   </div>
-                )}
+                ) : "category" in item && item.category ? (
+                  <div className="event-thumb mb-3 -mt-1 border border-light-stone/60 overflow-hidden">
+                    <CategoryThumbnail category={item.category as EventCategory} />
+                  </div>
+                ) : null}
                 <h2 className="section-heading text-2xl md:text-3xl text-light-text leading-tight">
                   {item.title}
                 </h2>
