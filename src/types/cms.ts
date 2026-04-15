@@ -49,6 +49,8 @@ export type CmsEvent = {
   date: string;
   endDate?: string;
   thumbnail?: string | null | undefined;
+  organizerName?: string;
+  organizerPhone?: string;
   body: CmsBlock[];
 };
 

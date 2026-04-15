@@ -158,6 +158,28 @@ const DateItemList = ({
                 <div className="prose-vbg">
                   <Content data={item.body} depth={1} />
                 </div>
+                {"organizerName" in item && item.organizerName && (
+                  <div className="mt-3 pt-3 border-t border-light-stone/40 text-sm text-light-muted">
+                    <span className="font-semibold tracking-wide uppercase text-xs mr-2">Arrangör:</span>
+                    {item.organizerPhone ? (
+                      <a
+                        href={`tel:${item.organizerPhone}`}
+                        className="hover:text-light-text transition-colors"
+                      >
+                        {item.organizerName}
+                      </a>
+                    ) : (
+                      <span>{item.organizerName}</span>
+                    )}
+                    {item.organizerPhone && (
+                      <span className="ml-2 opacity-70">
+                        <a href={`tel:${item.organizerPhone}`} className="hover:text-light-text transition-colors">
+                          {item.organizerPhone}
+                        </a>
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
             </article>
           </React.Fragment>

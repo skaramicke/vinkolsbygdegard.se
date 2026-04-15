@@ -117,6 +117,15 @@ collections:
         name: thumbnail
         widget: image
         required: false
+      - label: Arrangörens namn
+        name: organizerName
+        widget: string
+        required: false
+      - label: Arrangörens telefon
+        name: organizerPhone
+        widget: string
+        required: false
+        hint: "Ange som +46701234567 för att aktivera klickbar länk"
       - label: Innehåll
         name: body
         widget: list
