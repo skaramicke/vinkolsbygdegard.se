@@ -1,6 +1,5 @@
 import React from "react";
 import Content from "./Content";
-import { BorderedHeading } from "./BorderedHeading";
 
 type PagePropsType = {
   title: string;
@@ -15,20 +14,45 @@ const Page = ({
   body,
   children,
 }: PagePropsType) => (
-  <div>
-    <BorderedHeading large>
-      <h1 className="pt-2 w-full md:w-auto text-3xl font-semibold text-light-text dark:text-dark-primary lg:text-4xl">
+  <article className="fade-in-up">
+    <header className="text-center mt-2 mb-8 md:mb-10">
+      <div className="ornament-divider mb-5 text-light-gold">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+          <path
+            d="M7 0 L8.4 5.6 L14 7 L8.4 8.4 L7 14 L5.6 8.4 L0 7 L5.6 5.6 Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <h1 className="masthead-title text-light-text text-4xl md:text-6xl">
         {title}
       </h1>
-    </BorderedHeading>
-    {subtitle && (
-      <div className="text-center">
-        <p className="text-lg">{subtitle}</p>
+      {subtitle && (
+        <p className="font-display italic text-light-muted mt-3 text-lg">
+          {subtitle}
+        </p>
+      )}
+      <div className="ornament-divider mt-6 text-light-gold">
+        <svg
+          width="60"
+          height="14"
+          viewBox="0 0 60 14"
+          aria-hidden
+        >
+          <path
+            d="M0 7 L18 7 M30 1 L33 7 L30 13 L27 7 Z M42 7 L60 7"
+            stroke="currentColor"
+            strokeWidth="1"
+            fill="currentColor"
+          />
+        </svg>
       </div>
-    )}
-    <Content data={body} depth={0} />
+    </header>
+    <div className="prose-vbg">
+      <Content data={body} depth={0} />
+    </div>
     {children}
-  </div>
+  </article>
 );
 
 export default Page;

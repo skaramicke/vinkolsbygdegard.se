@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { CmsImage, CmsPage } from "../types/cms";
 
 const pageListedInMenu = (page: CmsPage, startPage?: CmsPage) => {
@@ -17,6 +17,8 @@ type HeaderProps = {
   setIsMenuOpen: (isMenuOpen: boolean) => void;
 };
 
+const GUTTER = "px-5 md:px-10 lg:px-14";
+
 const Header = ({
   banner,
   startPage,
@@ -24,151 +26,186 @@ const Header = ({
   isMenuOpen,
   setIsMenuOpen,
 }: HeaderProps) => {
+  const location = useLocation();
+  const orderedPages = (pages ?? [])
+    .filter((p) => pageListedInMenu(p, startPage))
+    .sort((a, b) => a.order - b.order);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [isMenuOpen, setIsMenuOpen]);
+
+  const currentPath = location.pathname;
+
   return (
-    <header className="container mx-auto max-w-screen-lg bg-light-secondary dark:bg-dark-secondary">
-      {banner && (
-        <div className="flex items-center justify-center mb-5">
-          <img src={banner.image} alt={banner.alt} className="w-full" />
-        </div>
-      )}
-      <nav className="px-8 xl:px-5 pb-5 lb:py-8">
-        <div className="md:hidden flex justify-between items-center">
-          {startPage && (
-            <>
-              <dialog
-                open={isMenuOpen}
-                className="fixed top-0 start-0 end-0 bottom-0 w-full h-full backdrop-blur"
-                style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
-              >
-                <div className="flex flex-col items-center justify-center bg-light-secondary dark:bg-dark-secondary">
-                  {startPage && (
-                    <Link
-                      to="/"
-                      className="px-5 py-2 text-lg font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
-                    >
-                      Hem
-                    </Link>
-                  )}
-                  {pages &&
-                    pages
-                      .filter((p) => pageListedInMenu(p, startPage))
-                      .sort((a, b) => a.order - b.order)
-                      .map((page) => (
-                        <Link
-                          key={page.slug}
-                          to={`/${page.slug}`}
-                          className="px-5 py-2 text-lg font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
-                        >
-                          {page.title}
-                        </Link>
-                      ))}
-                </div>
-              </dialog>
-              <Link
-                key={startPage.slug}
-                to="/"
-                className="text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
-              >
-                Hem
-              </Link>
-              <button
-                aria-label="Toggle Menu"
-                className="ml-auto rounded-md px-2 py-1 text-light-background focus:text-light-accent dark:text-dark-text focus:outline-none md:hidden"
-                id="headlessui-disclosure-button-:r0:"
-                type="button"
-                aria-expanded="false"
-                data-headlessui-state=""
-                onClick={(e) => {
-                  setIsMenuOpen(true);
-                  e.stopPropagation();
-                }}
-              >
-                <svg
-                  className="h-6 w-6 fill-light-background dark:fill-dark-background"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                  ></path>
-                </svg>
-              </button>
-            </>
-          )}
-        </div>
-        <div className="hidden md:flex justify-between items-center gap-1">
-          {startPage && (
-            <Link
-              to="/"
-              className="text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
-            >
-              {startPage.title}
-            </Link>
-          )}
-          {pages &&
-            pages
-              .filter((p) => pageListedInMenu(p, startPage))
-              .sort((a, b) => a.order - b.order)
-              .map((page) => (
-                <Link
-                  key={page.slug}
-                  to={`/${page.slug}`}
-                  className="text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
-                >
-                  {page.title}
-                </Link>
-              ))}
+    <header className="relative">
+      <div className={`container mx-auto max-w-screen-lg ${GUTTER} pt-6 md:pt-10 pb-5 md:pb-7`}>
+        <div className="flex items-center justify-between gap-4">
+          <span className="masthead-eyebrow text-light-muted hidden sm:inline">
+            Sedan 1923
+          </span>
+          <div className="flex-1 flex items-center justify-center gap-3 text-light-gold">
+            <span className="h-px flex-1 max-w-[6rem] bg-current opacity-60" />
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
+              <path
+                d="M8 1 L9.6 6.4 L15 8 L9.6 9.6 L8 15 L6.4 9.6 L1 8 L6.4 6.4 Z"
+                fill="currentColor"
+              />
+            </svg>
+            <span className="h-px flex-1 max-w-[6rem] bg-current opacity-60" />
+          </div>
+          <span className="masthead-eyebrow text-light-muted hidden sm:inline">
+            Vinköl · Skara
+          </span>
         </div>
 
-        {/* <div className="flex flex-wrap justify-between md:flex-nowrap md:gap-10">
-        <div className="flex w-full items-center justify-between md:w-auto">
-          {startPage && (
-            <Link
-              key={startPage.slug}
-              to="/"
-              className="text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
-            >
-              {startPage.title}
-            </Link>
-          )}
-          <button
-            aria-label="Toggle Menu"
-            className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-accent focus:outline-none md:hidden"
-            id="headlessui-disclosure-button-:r0:"
-            type="button"
-            aria-expanded="false"
-            data-headlessui-state=""
-          >
-            <svg
-              className="h-6 w-6 fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-              ></path>
-            </svg>
-          </button>
+        <Link
+          to="/"
+          className="block text-center mt-4 md:mt-5"
+          aria-label="Till startsidan"
+        >
+          <div className="masthead-eyebrow text-light-primary mb-2 md:mb-3">
+            Vinköls
+          </div>
+          <h1 className="masthead-title text-light-text text-[2.6rem] leading-[0.95] sm:text-6xl md:text-7xl">
+            Bygdegårds<span className="italic font-normal">förening</span>
+          </h1>
+        </Link>
+      </div>
+
+      {banner && (
+        <div className={`container mx-auto max-w-screen-lg ${GUTTER}`}>
+          <div className="banner-frame border border-light-stone/60 shadow-paper overflow-hidden">
+            <img
+              src={banner.image}
+              alt={banner.alt}
+              className="w-full block aspect-[3/2] sm:aspect-[2/1] md:aspect-[16/7] object-cover"
+            />
+          </div>
         </div>
-        <div className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
-          {pages &&
-            pages
-              .filter((p) => pageListedInMenu(p, startPage))
-              .sort((a, b) => a.order - b.order)
-              .map((page) => (
+      )}
+
+      <nav className={`menu-band mt-5 md:mt-8`}>
+        <div className={`container mx-auto max-w-screen-lg ${GUTTER} py-2.5 md:py-4`}>
+          <div className="hidden md:flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            {startPage && (
+              <Link
+                to="/"
+                aria-current={currentPath === "/" ? "page" : undefined}
+                className="nav-link px-4"
+              >
+                {startPage.title}
+              </Link>
+            )}
+            {orderedPages.map((page) => (
+              <React.Fragment key={page.slug}>
+                <span className="menu-separator" aria-hidden>
+                  ◆
+                </span>
+                <Link
+                  to={`/${page.slug}`}
+                  aria-current={
+                    currentPath === `/${page.slug}` ? "page" : undefined
+                  }
+                  className="nav-link px-4"
+                >
+                  {page.title}
+                </Link>
+              </React.Fragment>
+            ))}
+          </div>
+
+          <div className="md:hidden flex items-center justify-between">
+            <Link
+              to="/"
+              aria-current={currentPath === "/" ? "page" : undefined}
+              className="nav-link"
+            >
+              {startPage?.title ?? "Hem"}
+            </Link>
+            <button
+              aria-label="Öppna meny"
+              type="button"
+              aria-expanded={isMenuOpen}
+              className="group flex items-center gap-2 px-3 py-1.5"
+              onClick={(e) => {
+                setIsMenuOpen(true);
+                e.stopPropagation();
+              }}
+            >
+              <span className="nav-link !text-light-primary">Meny</span>
+              <span className="flex flex-col gap-[3px]">
+                <span className="block w-4 h-px bg-light-primary" />
+                <span className="block w-4 h-px bg-light-primary" />
+                <span className="block w-4 h-px bg-light-primary" />
+              </span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 z-50 md:hidden"
+          style={{ backgroundColor: "rgba(9,23,51,0.55)", backdropFilter: "blur(4px)" }}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <div
+            className="absolute top-0 right-0 bottom-0 w-[82%] max-w-[22rem] bg-light-background shadow-paper flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-6 py-5 border-b border-light-stone/60">
+              <span className="masthead-eyebrow text-light-primary">
+                Meny
+              </span>
+              <button
+                aria-label="Stäng meny"
+                className="masthead-eyebrow text-light-muted"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Stäng ✕
+              </button>
+            </div>
+            <div className="px-6 py-4 flex-1 overflow-y-auto">
+              <Link
+                to="/"
+                onClick={() => setIsMenuOpen(false)}
+                className="drawer-link border-b border-light-stone/40"
+              >
+                {startPage?.title ?? "Hem"}
+              </Link>
+              {orderedPages.map((page) => (
                 <Link
                   key={page.slug}
                   to={`/${page.slug}`}
-                  className="px-5 py-2 text-sm font-medium text-light-background dark:text-dark-background hover:text-light-accent dark:hover:text-dark-accent"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="drawer-link border-b border-light-stone/40"
                 >
                   {page.title}
                 </Link>
               ))}
+            </div>
+            <div className="px-6 py-4 border-t border-light-stone/60 bg-light-paper/50">
+              <div className="ornament-divider text-light-gold mb-2">
+                <svg width="12" height="12" viewBox="0 0 14 14" aria-hidden>
+                  <path
+                    d="M7 0 L8.4 5.6 L14 7 L8.4 8.4 L7 14 L5.6 8.4 L0 7 L5.6 5.6 Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <p className="text-center font-display italic text-sm text-light-muted">
+                Sedan 1923 · Vinköl, Skara
+              </p>
+            </div>
+          </div>
         </div>
-      </div> */}
-      </nav>
+      )}
     </header>
   );
 };

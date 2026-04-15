@@ -83,8 +83,8 @@ function App() {
                 isMenuOpen={isMenuOpen}
                 setIsMenuOpen={setIsMenuOpen}
               />
-              <main className="container px-8 mx-auto xl:px-5 max-w-screen-lg py-5 lg:py-8 border-l border-r border-light-secondary dark:border-dark-secondary">
-                <div className="max-w-2x1 mx-auto">
+              <main className="container mx-auto max-w-screen-lg px-5 md:px-10 lg:px-14 py-8 md:py-12">
+                <div className="max-w-3xl mx-auto">
                   <Routes>
                     {startPage && (
                       <Route path="/" element={<Page {...startPage} />} />

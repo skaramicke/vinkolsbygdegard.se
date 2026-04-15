@@ -16,6 +16,8 @@
 
 # misc
 .DS_Store
+/screenshots
+/.grit-cache
 .env.local
 .env.development.local
 .env.test.local
