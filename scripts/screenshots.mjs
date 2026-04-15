@@ -4,9 +4,6 @@ import { resolve } from 'path';
 
 const BASE = process.env.BASE_URL || 'http://localhost:3000';
 const OUT = process.env.OUT_DIR || './screenshots';
-const VARIANT = process.env.VARIANT || 'before';
-
-mkdirSync(OUT, { recursive: true });
 
 const pages = [
   { name: 'home', path: '/' },
@@ -28,6 +25,8 @@ const viewports = [
 
 const browser = await chromium.launch();
 for (const vp of viewports) {
+  const dir = resolve(OUT, vp.name);
+  mkdirSync(dir, { recursive: true });
   const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
   const page = await ctx.newPage();
   for (const p of pages) {
@@ -35,7 +34,7 @@ for (const vp of viewports) {
     try {
       await page.goto(url, { waitUntil: 'networkidle', timeout: 20000 });
       await page.waitForTimeout(400);
-      const file = resolve(OUT, `${VARIANT}-${vp.name}-${p.name}.png`);
+      const file = resolve(dir, `${p.name}.png`);
       await page.screenshot({ path: file, fullPage: true });
       console.log('OK', file);
     } catch (e) {
