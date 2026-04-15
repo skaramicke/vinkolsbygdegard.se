@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-15T14:30",
+  "endDate": "2026-11-15T16:30",
+  "title": "Våffelcafé",
+  "body": [
+    {
+      "type": "text",
+      "body": "Välkomna att träffas och äta en våffla med sylt och grädde."
+    },
+    {
+      "type": "text",
+      "heading": "Arrangörer",
+      "body": "Jenny Jacobsson, Annelie Vaske och Ingela Johansson [070-409 34 58](tel:0704093458)"
+    }
+  ]
+}
