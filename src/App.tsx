@@ -127,6 +127,7 @@ function App() {
                               title={news.title}
                               subtitle={news.date}
                               body={news.body}
+                              image={news.thumbnail ?? undefined}
                             />
                           }
                         />

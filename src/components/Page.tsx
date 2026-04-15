@@ -1,20 +1,44 @@
 import React from "react";
 import Content from "./Content";
+import { usePageMeta } from "../hooks/usePageMeta";
+import { CmsBlock, CmsText } from "../types/cms";
 
 type PagePropsType = {
   title: string;
   subtitle?: string;
   body: any;
+  description?: string;
+  image?: string;
   children?: React.ReactNode;
 };
+
+function extractDescription(body: CmsBlock[]): string | undefined {
+  const firstText = body?.find((b): b is CmsText => b.type === "text");
+  if (!firstText?.body) return undefined;
+  const stripped = firstText.body
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*_#`~>]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return stripped.slice(0, 200) || undefined;
+}
+
+function PageMeta({ title, description, image, body }: PagePropsType) {
+  usePageMeta(title, description ?? extractDescription(body), image);
+  return null;
+}
 
 const Page = ({
   title,
   subtitle = undefined,
   body,
+  description,
+  image,
   children,
 }: PagePropsType) => (
-  <article className="fade-in-up">
+  <>
+    <PageMeta title={title} description={description} image={image} body={body} />
+    <article className="fade-in-up">
     <header className="text-center mt-2 mb-8 md:mb-10">
       <div className="ornament-divider mb-5 text-light-gold">
         <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
@@ -51,8 +75,9 @@ const Page = ({
     <div className="prose-vbg">
       <Content data={body} depth={0} />
     </div>
-    {children}
-  </article>
+      {children}
+    </article>
+  </>
 );
 
 export default Page;
