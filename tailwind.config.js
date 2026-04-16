@@ -29,23 +29,6 @@ module.exports = {
         goldLight: "#c9a866",
         stone: "#bdb0a0",
       },
-      dark: {
-        text: "#1a1208",
-        muted: "#5a4a3a",
-        background: "#f5efea",
-        paper: "#f0e8e0",
-        textOnPrimary: "#f5efea",
-        primary: "#7d1818",
-        primaryDark: "#5a1010",
-        textOnSecondary: "#f5efea",
-        secondary: "#091733",
-        secondaryLight: "#1a2a52",
-        textOnAccent: "#f5efea",
-        accent: "#587818",
-        gold: "#a07a30",
-        goldLight: "#c9a866",
-        stone: "#bdb0a0",
-      },
     },
     extend: {
       boxShadow: {
