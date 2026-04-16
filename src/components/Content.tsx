@@ -121,21 +121,23 @@ const Content = ({
       const alignRightClass = data.rightAlign
         ? `align-${data.rightAlign}`
         : "align-left";
+      const rightIsImageOnly =
+        data.right.length > 0 && data.right.every((item) => item.type === "image");
       return (
         <section
           className={cx("my-5 w-full", alignClass)}
           data-comment="columns"
         >
           {heading && <BorderedHeading>{heading}</BorderedHeading>}
-          <div className="flex gap-10">
-            <div className={cx("w-1/2", alignLeftClass)}>
+          <div className="flex gap-10 items-start">
+            <div className={cx("flex-1 min-w-0", alignLeftClass)}>
               <Content
                 data={data.left}
                 depth={depth + 1}
                 align={data.leftAlign}
               />
             </div>
-            <div className={cx("w-1/2", alignRightClass)}>
+            <div className={cx(rightIsImageOnly ? "w-auto shrink-0 max-w-[180px]" : "w-1/2", alignRightClass)}>
               <Content
                 data={data.right}
                 depth={depth + 1}
