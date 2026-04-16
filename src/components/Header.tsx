@@ -44,24 +44,22 @@ const Header = ({
 
   return (
     <header className="relative">
+      {/* Identity bar — Falun red, full width */}
+      <div className="identity-bar">
+        <div className={`container mx-auto max-w-screen-lg ${GUTTER} py-2 flex items-center justify-between`}>
+          <span>Vinköls Bygdegårdsförening</span>
+          <span className="hidden sm:inline">Sedan 1923 · Vinköl, Skara</span>
+          <a href="tel:+46760402986" className="hover:text-white transition-colors">076-040 29 86</a>
+        </div>
+      </div>
+
       <div className={`container mx-auto max-w-screen-lg ${GUTTER} pt-6 md:pt-10 pb-5 md:pb-7`}>
-        <div className="flex items-center justify-between gap-4">
-          <span className="masthead-eyebrow text-light-muted hidden sm:inline">
-            Sedan 1923
-          </span>
-          <div className="flex-1 flex items-center justify-center gap-3 text-light-gold">
-            <span className="h-px flex-1 max-w-[6rem] bg-current opacity-60" />
-            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
-              <path
-                d="M8 1 L9.6 6.4 L15 8 L9.6 9.6 L8 15 L6.4 9.6 L1 8 L6.4 6.4 Z"
-                fill="currentColor"
-              />
-            </svg>
-            <span className="h-px flex-1 max-w-[6rem] bg-current opacity-60" />
-          </div>
-          <span className="masthead-eyebrow text-light-muted hidden sm:inline">
-            Vinköl · Skara
-          </span>
+        <div className="flex items-center justify-center gap-3 text-light-gold opacity-70">
+          <span className="h-px w-16 bg-current" />
+          <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden>
+            <path d="M8 1 L9.6 6.4 L15 8 L9.6 9.6 L8 15 L6.4 9.6 L1 8 L6.4 6.4 Z" fill="currentColor"/>
+          </svg>
+          <span className="h-px w-16 bg-current" />
         </div>
 
         <Link
@@ -90,8 +88,8 @@ const Header = ({
         </div>
       )}
 
-      <nav className={`menu-band mt-5 md:mt-8`}>
-        <div className={`container mx-auto max-w-screen-lg ${GUTTER} py-2.5 md:py-4`}>
+      <nav className={`menu-band mt-5 md:mt-8`} aria-label="Huvudmeny">
+        <div className={`container mx-auto max-w-screen-lg ${GUTTER} py-3 md:py-4`}>
           <div className="hidden md:flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
             {startPage && (
               <Link

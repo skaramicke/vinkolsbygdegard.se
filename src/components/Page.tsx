@@ -39,36 +39,24 @@ const Page = ({
   <>
     <PageMeta title={title} description={description} image={image} body={body} />
     <article className="fade-in-up">
-    <header className="text-center mt-2 mb-8 md:mb-10">
-      <div className="ornament-divider mb-5 text-light-gold">
+    <header className="text-center mt-2 mb-10 md:mb-14">
+      <div className="ornament-divider mb-6 text-light-gold">
         <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
-          <path
-            d="M7 0 L8.4 5.6 L14 7 L8.4 8.4 L7 14 L5.6 8.4 L0 7 L5.6 5.6 Z"
-            fill="currentColor"
-          />
+          <path d="M7 0 L8.4 5.6 L14 7 L8.4 8.4 L7 14 L5.6 8.4 L0 7 L5.6 5.6 Z" fill="currentColor"/>
         </svg>
       </div>
-      <h1 className="masthead-title text-light-text text-4xl md:text-6xl">
+      <h1 className="masthead-title text-light-text text-5xl md:text-7xl">
         {title}
       </h1>
       {subtitle && (
-        <p className="font-display italic text-light-muted mt-3 text-lg">
+        <p className="font-display italic text-light-muted mt-4 text-xl">
           {subtitle}
         </p>
       )}
-      <div className="ornament-divider mt-6 text-light-gold">
-        <svg
-          width="60"
-          height="14"
-          viewBox="0 0 60 14"
-          aria-hidden
-        >
-          <path
-            d="M0 7 L18 7 M30 1 L33 7 L30 13 L27 7 Z M42 7 L60 7"
-            stroke="currentColor"
-            strokeWidth="1"
-            fill="currentColor"
-          />
+      <div className="ornament-divider mt-7 text-light-gold">
+        <svg width="72" height="14" viewBox="0 0 72 14" aria-hidden>
+          <path d="M0 7 L24 7 M36 1 L39 7 L36 13 L33 7 Z M48 7 L72 7"
+            stroke="currentColor" strokeWidth="1" fill="currentColor"/>
         </svg>
       </div>
     </header>

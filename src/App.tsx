@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Admin from "./Admin";
 import Page from "./components/Page";
 import {
@@ -30,39 +30,85 @@ function filterPages(
   newsPageTitle?: string
 ) {
   let filteredPages = pages;
-  // If event page title is set, but data.events is empty, remove the event page from the menu
   if (eventPageTitle && data.events?.length === 0) {
     filteredPages = filteredPages.filter((p) => p.title !== eventPageTitle);
   }
-  // If news page title is set, but data.news is empty, remove the news page from the menu
   if (newsPageTitle && data.news?.length === 0) {
     filteredPages = filteredPages.filter((p) => p.title !== newsPageTitle);
   }
   return filteredPages;
 }
 
+const SectionPreviewHeader: React.FC<{ label: string }> = ({ label }) => (
+  <div className="ornament-divider mb-8">
+    <span className="home-preview-title">{label}</span>
+  </div>
+);
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const startPageTitle: string | undefined = (data.settings as CmsSettings[])[0]
-    ?.startPage;
-  let startPage: CmsPage | undefined;
+  const settings = (data.settings as CmsSettings[])[0];
+  const startPageTitle = settings?.startPage;
+  const eventPageTitle = settings?.eventsPage;
+  const newsPageTitle  = settings?.newsPage;
+  const footerData: (CmsText | CmsImage)[] = settings.footer;
+  const banner: CmsImage | undefined = settings?.banner;
 
-  if (startPageTitle) {
-    startPage = data.pages?.find((page) => page.title === startPageTitle);
-  }
+  const startPage = data.pages?.find((p) => p.title === startPageTitle);
+  const eventPage = data.pages?.find((p) => p.title === eventPageTitle);
+  const newsPage  = data.pages?.find((p) => p.title === newsPageTitle);
 
-  const eventPageTitle: string | undefined = (data.settings as CmsSettings[])[0]
-    ?.eventsPage;
+  const now = Date.now();
+  const upcomingEvents = (data.events ?? [])
+    .filter((e) => new Date(e.date).getTime() > now)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    .slice(0, 3);
 
-  const newsPageTitle: string | undefined = (data.settings as CmsSettings[])[0]
-    ?.newsPage;
+  const recentNews = (data.news ?? [])
+    .filter((n) => new Date(n.date).getTime() <= now)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2);
 
-  const footerData: (CmsText | CmsImage)[] = (data.settings as CmsSettings[])[0]
-    .footer;
+  const homeElement = startPage ? (
+    <>
+      <Page {...startPage} />
 
-  const banner: CmsImage | undefined = (data.settings as CmsSettings[])[0]
-    ?.banner;
+      {upcomingEvents.length > 0 && (
+        <section className="home-preview-section">
+          <SectionPreviewHeader label="Kommande evenemang" />
+          <DateItemList items={upcomingEvents} sortOrder="asc" />
+          {eventPage && (
+            <div className="mt-8 text-right">
+              <Link to={`/${eventPage.slug}`} className="see-all-link">
+                Alla evenemang
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            </div>
+          )}
+        </section>
+      )}
+
+      {recentNews.length > 0 && (
+        <section className="home-preview-section">
+          <SectionPreviewHeader label="Senaste nytt" />
+          <DateItemList items={recentNews} sortOrder="desc" />
+          {newsPage && (
+            <div className="mt-8 text-right">
+              <Link to={`/${newsPage.slug}`} className="see-all-link">
+                Alla nyheter
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            </div>
+          )}
+        </section>
+      )}
+    </>
+  ) : null;
 
   return (
     <BrowserRouter>
@@ -71,23 +117,19 @@ function App() {
         <Route
           path="*"
           element={
-            <div onClick={(e) => setIsMenuOpen(false)}>
+            <div onClick={() => setIsMenuOpen(false)}>
               <Header
                 startPage={startPage}
-                pages={filterPages(
-                  data.pages || [],
-                  eventPageTitle,
-                  newsPageTitle
-                )}
+                pages={filterPages(data.pages || [], eventPageTitle, newsPageTitle)}
                 banner={banner}
                 isMenuOpen={isMenuOpen}
                 setIsMenuOpen={setIsMenuOpen}
               />
-              <main className="container mx-auto max-w-screen-lg px-5 md:px-10 lg:px-14 py-8 md:py-12">
-                <div className="max-w-3xl mx-auto">
+              <main className="container mx-auto max-w-screen-lg px-5 md:px-10 lg:px-14 py-10 md:py-14">
+                <div className="max-w-4xl mx-auto">
                   <Routes>
                     {startPage && (
-                      <Route path="/" element={<Page {...startPage} />} />
+                      <Route path="/" element={homeElement} />
                     )}
                     {data.pages &&
                       data.pages.map((page) => (
@@ -132,7 +174,6 @@ function App() {
                           }
                         />
                       ))}
-                    {/* 404 page */}
                     <Route path="*" element={<h1>404</h1>} />
                   </Routes>
                 </div>

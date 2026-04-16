@@ -4,43 +4,29 @@
   "title": "Styrelsen",
   "body": [
     {
-      "type": "columns",
-      "left": [
-        {
-          "type": "text",
-          "body": "Fredrik Bengtsson",
-          "heading": "Ordförande"
-        },
-        {
-          "type": "text",
-          "body": "Fredrik Bengtsson, Lena Jansson, Robert Holmström, Leif Hildingsson, Ingela Johansson, Linda Garyd Berglund och Annelie Vaske",
-          "heading": "Ledamöter"
-        },
-        {
-          "type": "text",
-          "body": "Jenny Elwing, Jenny Jacobsson, Niklas Ullberg, Bengt Samuelsson och Mikael Grön",
-          "heading": "Suppleanter"
-        },
-        {
-          "type": "text",
-          "body": "Mikael Jansson och Stefan Berglund",
-          "heading": "Valberedningen"
-        },
-        {
-          "type": "text",
-          "body": "Henry Peterson och Klas-Åke Jansson",
-          "heading": "Revisorer"
-        }
-      ],
-      "right": [
-        {
-          "type": "image",
-          "image": "/images/styrelsen.png",
-          "alt": "Styrelsen"
-        }
-      ],
-      "leftAlign": "left",
-      "rightAlign": "center"
+      "type": "text",
+      "heading": "Ordförande",
+      "body": "Fredrik Bengtsson"
+    },
+    {
+      "type": "text",
+      "heading": "Ledamöter",
+      "body": "Fredrik Bengtsson, Lena Jansson, Robert Holmström, Leif Hildingsson, Ingela Johansson, Linda Garyd Berglund och Annelie Vaske"
+    },
+    {
+      "type": "text",
+      "heading": "Suppleanter",
+      "body": "Jenny Elwing, Jenny Jacobsson, Niklas Ullberg, Bengt Samuelsson och Mikael Grön"
+    },
+    {
+      "type": "text",
+      "heading": "Valberedningen",
+      "body": "Mikael Jansson och Stefan Berglund"
+    },
+    {
+      "type": "text",
+      "heading": "Revisorer",
+      "body": "Henry Peterson och Klas-Åke Jansson"
     }
   ]
 }
