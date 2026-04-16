@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "memory": {
+      "command": "/usr/local/bin/grit",
+      "args": [
+        "mcp-memory"
+      ],
+      "env": {
+        "GRIT_DASHBOARD_URL": "https://localhost:7474/api"
+      }
+    }
+  }
+}
