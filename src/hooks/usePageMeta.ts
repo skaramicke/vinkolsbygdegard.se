@@ -31,10 +31,34 @@ function setMetaProperty(property: string, content: string) {
   el.setAttribute("content", content);
 }
 
+function setLinkCanonical(url: string) {
+  let el = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", "canonical");
+    document.head.appendChild(el);
+  }
+  el.setAttribute("href", url);
+}
+
+function setJsonLd(schema: object) {
+  let el = document.querySelector<HTMLScriptElement>(
+    'script[type="application/ld+json"][data-page]'
+  );
+  if (!el) {
+    el = document.createElement("script");
+    el.setAttribute("type", "application/ld+json");
+    el.setAttribute("data-page", "1");
+    document.head.appendChild(el);
+  }
+  el.textContent = JSON.stringify(schema);
+}
+
 export function usePageMeta(
   title: string,
   description?: string,
-  image?: string
+  image?: string,
+  schema?: object
 ) {
   useEffect(() => {
     const pageTitle = `${title} — ${SITE_NAME}`;
@@ -43,20 +67,27 @@ export function usePageMeta(
     const absoluteImage = pageImage.startsWith("http")
       ? pageImage
       : `${window.location.origin}${pageImage}`;
+    const canonicalUrl =
+      window.location.origin + window.location.pathname;
 
     document.title = pageTitle;
     setMetaName("description", pageDesc);
+    setLinkCanonical(canonicalUrl);
 
     setMetaProperty("og:title", pageTitle);
     setMetaProperty("og:description", pageDesc);
     setMetaProperty("og:image", absoluteImage);
     setMetaProperty("og:type", "website");
     setMetaProperty("og:site_name", SITE_NAME);
-    setMetaProperty("og:url", window.location.href);
+    setMetaProperty("og:url", canonicalUrl);
 
     setMetaName("twitter:card", "summary_large_image");
     setMetaName("twitter:title", pageTitle);
     setMetaName("twitter:description", pageDesc);
     setMetaName("twitter:image", absoluteImage);
-  }, [title, description, image]);
+
+    if (schema) {
+      setJsonLd(schema);
+    }
+  }, [title, description, image, schema]);
 }

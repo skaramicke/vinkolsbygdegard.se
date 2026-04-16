@@ -9,6 +9,7 @@ type PagePropsType = {
   body: any;
   description?: string;
   image?: string;
+  schema?: object;
   children?: React.ReactNode;
 };
 
@@ -23,8 +24,8 @@ function extractDescription(body: CmsBlock[]): string | undefined {
   return stripped.slice(0, 200) || undefined;
 }
 
-function PageMeta({ title, description, image, body }: PagePropsType) {
-  usePageMeta(title, description ?? extractDescription(body), image);
+function PageMeta({ title, description, image, body, schema }: PagePropsType) {
+  usePageMeta(title, description ?? extractDescription(body), image, schema);
   return null;
 }
 
@@ -34,10 +35,11 @@ const Page = ({
   body,
   description,
   image,
+  schema,
   children,
 }: PagePropsType) => (
   <>
-    <PageMeta title={title} description={description} image={image} body={body} />
+    <PageMeta title={title} description={description} image={image} body={body} schema={schema} />
     <article className="fade-in-up">
     <header className="text-center mt-2 mb-10 md:mb-14">
       <div className="ornament-divider mb-6 text-light-gold">

@@ -1,0 +1,3 @@
+# SPA fallback — serve index.html for unmatched routes.
+# Static files (including per-route prerendered HTML) take precedence over this rule.
+/* /index.html 200

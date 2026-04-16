@@ -16,6 +16,11 @@ import Footer from "./components/Footer";
 import DateItemList from "./components/DateItemList";
 import NotFound from "./components/NotFound";
 import { setSiteDescription } from "./hooks/usePageMeta";
+import {
+  eventListSchema,
+  newsArticleSchema,
+  organizationSchema,
+} from "./utils/structuredData";
 
 interface Data {
   pages?: CmsPage[];
@@ -76,7 +81,7 @@ function App() {
 
   const homeElement = startPage ? (
     <>
-      <Page {...startPage} />
+      <Page {...startPage} schema={organizationSchema()} />
 
       {upcomingEvents.length > 0 && (
         <section className="home-preview-section">
@@ -136,15 +141,27 @@ function App() {
                       <Route path="/" element={homeElement} />
                     )}
                     {data.pages &&
-                      data.pages.map((page) => (
-                        <Route
-                          key={page.slug}
-                          path={`/${page.slug}`}
-                          element={
-                            <Page title={page.title} body={page.body}>
-                              {eventPageTitle &&
-                                page.title === eventPageTitle &&
-                                data.events && (
+                      data.pages.map((page) => {
+                        const isEventsPage =
+                          eventPageTitle && page.title === eventPageTitle;
+                        const pageSchema = isEventsPage
+                          ? eventListSchema(
+                              (data.events ?? []).filter(
+                                (e) => new Date(e.date).getTime() > Date.now()
+                              )
+                            ) ?? undefined
+                          : undefined;
+                        return (
+                          <Route
+                            key={page.slug}
+                            path={`/${page.slug}`}
+                            element={
+                              <Page
+                                title={page.title}
+                                body={page.body}
+                                schema={pageSchema}
+                              >
+                                {isEventsPage && data.events && (
                                   <DateItemList
                                     items={data.events}
                                     sortOrder="asc"
@@ -152,18 +169,19 @@ function App() {
                                     showIcsDownload
                                   />
                                 )}
-                              {newsPageTitle &&
-                                page.title === newsPageTitle &&
-                                data.news && (
+                                {newsPageTitle &&
+                                  page.title === newsPageTitle &&
+                                  data.news && (
                                   <DateItemList
                                     items={data.news}
                                     hide="future"
                                   />
                                 )}
-                            </Page>
-                          }
-                        />
-                      ))}
+                              </Page>
+                            }
+                          />
+                        );
+                      })}
                     {data.news &&
                       data.news.map((news) => (
                         <Route
@@ -175,6 +193,7 @@ function App() {
                               subtitle={news.date}
                               body={news.body}
                               image={news.thumbnail ?? undefined}
+                              schema={newsArticleSchema(news, news.body)}
                             />
                           }
                         />
