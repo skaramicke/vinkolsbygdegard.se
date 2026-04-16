@@ -15,6 +15,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DateItemList from "./components/DateItemList";
 import NotFound from "./components/NotFound";
+import { setSiteDescription } from "./hooks/usePageMeta";
 
 interface Data {
   pages?: CmsPage[];
@@ -55,6 +56,8 @@ function App() {
   const newsPageTitle  = settings?.newsPage;
   const footerData: (CmsText | CmsImage)[] = settings.footer;
   const banner: CmsImage | undefined = settings?.banner;
+
+  if (settings?.description) setSiteDescription(settings.description);
 
   const startPage = data.pages?.find((p) => p.title === startPageTitle);
   const eventPage = data.pages?.find((p) => p.title === eventPageTitle);

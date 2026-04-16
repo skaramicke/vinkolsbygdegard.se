@@ -66,6 +66,7 @@ export type CmsNewsArticle = {
 export type CmsSettings = {
   slug: string;
   title: string;
+  description?: string;
   banner?: CmsImage | undefined;
   startPage: string;
   eventsPage: string;

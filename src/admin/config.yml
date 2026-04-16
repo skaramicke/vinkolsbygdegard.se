@@ -21,6 +21,11 @@ collections:
       - name: title
         label: Titel
         widget: string
+      - name: description
+        label: Beskrivning
+        widget: string
+        hint: Visas som meta-beskrivning i sökmotorer och sociala medier.
+        required: false
       - name: banner
         label: Toppbild
         widget: object

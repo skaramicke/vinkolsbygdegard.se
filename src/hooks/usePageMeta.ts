@@ -2,8 +2,12 @@ import { useEffect } from "react";
 
 const SITE_NAME = "Vinköls Bygdegårdsförening";
 const DEFAULT_IMAGE = "/images/header.png";
-const DEFAULT_DESCRIPTION =
+let siteDescription =
   "Vinköls Bygdegårdsförening — bygdens samlingsplats sedan 1923. Evenemang, uthyrning och historia från Vinköl.";
+
+export function setSiteDescription(desc: string) {
+  siteDescription = desc;
+}
 
 function setMetaName(name: string, content: string) {
   let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
@@ -34,7 +38,7 @@ export function usePageMeta(
 ) {
   useEffect(() => {
     const pageTitle = `${title} — ${SITE_NAME}`;
-    const pageDesc = description || DEFAULT_DESCRIPTION;
+    const pageDesc = description || siteDescription;
     const pageImage = image || DEFAULT_IMAGE;
     const absoluteImage = pageImage.startsWith("http")
       ? pageImage
