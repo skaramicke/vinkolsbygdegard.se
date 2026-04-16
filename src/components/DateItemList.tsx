@@ -2,6 +2,7 @@ import React from "react";
 import { CmsEvent, CmsNewsArticle } from "../types/cms";
 import Content from "./Content";
 import CategoryThumbnail, { EventCategory } from "./CategoryThumbnail";
+import { icsDataUrl } from "../utils/ics";
 
 type SortOrderType = "asc" | "desc";
 type hideByTimeType = "none" | "past" | "future";
@@ -10,6 +11,7 @@ type DateItemListPropsType = {
   items: (CmsEvent | CmsNewsArticle)[];
   sortOrder?: SortOrderType;
   hide?: hideByTimeType;
+  showIcsDownload?: boolean;
 };
 
 const MONTHS_SV = [
@@ -92,6 +94,7 @@ const DateItemList = ({
   items,
   sortOrder,
   hide = "none",
+  showIcsDownload = false,
 }: DateItemListPropsType) => {
   const filtered = items
     .slice()
@@ -183,6 +186,23 @@ const DateItemList = ({
                         </a>
                       </span>
                     )}
+                  </div>
+                )}
+                {showIcsDownload && (
+                  <div className="mt-3 pt-3 border-t border-light-stone/40 flex justify-end">
+                    <a
+                      href={icsDataUrl(item as CmsEvent)}
+                      download={`${item.slug}.ics`}
+                      className="ics-download-link"
+                      aria-label={`Lägg till ${item.title} i kalendern`}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" className="shrink-0">
+                        <rect x="1" y="2" width="10" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.2"/>
+                        <path d="M1 5h10" stroke="currentColor" strokeWidth="1.2"/>
+                        <path d="M4 1v2M8 1v2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                      </svg>
+                      Lägg i kalender
+                    </a>
                   </div>
                 )}
               </div>

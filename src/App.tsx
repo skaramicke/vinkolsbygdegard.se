@@ -81,7 +81,7 @@ function App() {
       {upcomingEvents.length > 0 && (
         <section className="home-preview-section">
           <SectionPreviewHeader label="Kommande evenemang" />
-          <DateItemList items={upcomingEvents} sortOrder="asc" />
+          <DateItemList items={upcomingEvents} sortOrder="asc" showIcsDownload />
           {eventPage && (
             <div className="mt-8 text-right">
               <Link to={`/${eventPage.slug}`} className="see-all-link">
@@ -149,6 +149,7 @@ function App() {
                                     items={data.events}
                                     sortOrder="asc"
                                     hide="past"
+                                    showIcsDownload
                                   />
                                 )}
                               {newsPageTitle &&
