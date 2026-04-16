@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CmsImage, CmsPage } from "../types/cms";
 
@@ -31,6 +31,11 @@ const Header = ({
     .filter((p) => pageListedInMenu(p, startPage))
     .sort((a, b) => a.order - b.order);
 
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+
+  // Escape to close
   useEffect(() => {
     if (!isMenuOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -39,6 +44,43 @@ const Header = ({
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [isMenuOpen, setIsMenuOpen]);
+
+  // Focus close button when drawer opens; return focus to toggle when it closes
+  const prevOpenRef = useRef(false);
+  useEffect(() => {
+    if (isMenuOpen && !prevOpenRef.current) {
+      // Opening: focus first element in drawer
+      closeButtonRef.current?.focus();
+    } else if (!isMenuOpen && prevOpenRef.current) {
+      // Closing: return focus to toggle button
+      toggleButtonRef.current?.focus();
+    }
+    prevOpenRef.current = isMenuOpen;
+  }, [isMenuOpen]);
+
+  // Focus trap inside drawer
+  const handleDrawerKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== "Tab" || !drawerRef.current) return;
+    const focusable = Array.from(
+      drawerRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => el.offsetParent !== null);
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  };
 
   const currentPath = location.pathname;
 
@@ -127,7 +169,9 @@ const Header = ({
               {startPage?.title ?? "Hem"}
             </Link>
             <button
+              ref={toggleButtonRef}
               aria-label="Öppna meny"
+              aria-controls="mobile-nav-drawer"
               type="button"
               aria-expanded={isMenuOpen}
               className="group flex items-center gap-2 px-3 py-1.5"
@@ -152,16 +196,24 @@ const Header = ({
           className="fixed inset-0 z-50 md:hidden"
           style={{ backgroundColor: "rgba(9,23,51,0.55)", backdropFilter: "blur(4px)" }}
           onClick={() => setIsMenuOpen(false)}
+          aria-hidden
         >
           <div
+            id="mobile-nav-drawer"
+            ref={drawerRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Meny"
             className="absolute top-0 right-0 bottom-0 w-[82%] max-w-[22rem] bg-light-background shadow-paper flex flex-col"
             onClick={(e) => e.stopPropagation()}
+            onKeyDown={handleDrawerKeyDown}
           >
             <div className="flex items-center justify-between px-6 py-5 border-b border-light-stone/60">
               <span className="masthead-eyebrow text-light-primary">
                 Meny
               </span>
               <button
+                ref={closeButtonRef}
                 aria-label="Stäng meny"
                 className="masthead-eyebrow text-light-muted"
                 onClick={() => setIsMenuOpen(false)}
