@@ -14,6 +14,7 @@ import {
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DateItemList from "./components/DateItemList";
+import NotFound from "./components/NotFound";
 
 interface Data {
   pages?: CmsPage[];
@@ -174,7 +175,7 @@ function App() {
                           }
                         />
                       ))}
-                    <Route path="*" element={<h1>404</h1>} />
+                    <Route path="*" element={<NotFound />} />
                   </Routes>
                 </div>
               </main>
