@@ -8,241 +8,355 @@ export type EventCategory =
   | "historia"
   | "städ";
 
-const C = {
-  paper: "#f5efea",
-  red: "#7d1818",
-  redDark: "#5a1010",
-  gold: "#a07a30",
-  goldLight: "#c9a866",
-  indigo: "#091733",
-  olive: "#587818",
-  oliveDark: "#3d5010",
-  stone: "#bdb0a0",
-  stoneDark: "#9a8a78",
-  ink: "#1a1208",
-};
-
-const Frame: React.FC<{ color?: string }> = ({ color = C.gold }) => {
-  const d4 = (cx: number, cy: number) => (
-    <polygon
-      key={`d-${cx}-${cy}`}
-      points={`${cx},${cy - 4.5} ${cx + 4.5},${cy} ${cx},${cy + 4.5} ${cx - 4.5},${cy}`}
-      fill={color}
-    />
-  );
-  const pts: [number, number][] = [
-    [10, 10], [100, 10], [200, 10], [300, 10], [390, 10],
-    [10, 80], [390, 80],
-    [10, 150], [100, 150], [200, 150], [300, 150], [390, 150],
-  ];
-  return (
-    <>
-      <rect x={10} y={10} width={380} height={140} fill="none" stroke={color} strokeWidth={1.5} />
-      {pts.map(([cx, cy]) => d4(cx, cy))}
-    </>
-  );
-};
-
-const FolkFlower: React.FC<{
-  cx: number; cy: number;
-  petalColor: string; centerColor: string;
-  scale?: number;
-}> = ({ cx, cy, petalColor, centerColor, scale = 1 }) => {
-  const pd = 8 * scale;
-  const pr = 4 * scale;
-  const pl = 9 * scale;
-  return (
-    <g>
-      {[0, 60, 120, 180, 240, 300].map((angle) => (
-        <ellipse
-          key={angle}
-          cx={cx}
-          cy={cy - pd}
-          rx={pr}
-          ry={pl}
-          fill={petalColor}
-          transform={`rotate(${angle} ${cx} ${cy})`}
-        />
-      ))}
-      <circle cx={cx} cy={cy} r={5 * scale} fill={centerColor} />
-    </g>
-  );
-};
-
-const Leaf: React.FC<{
-  cx: number; cy: number; angle: number; color: string; size?: number;
-}> = ({ cx, cy, angle, color, size = 1 }) => (
-  <ellipse
-    cx={cx}
-    cy={cy}
-    rx={4 * size}
-    ry={9 * size}
-    fill={color}
-    transform={`rotate(${angle} ${cx} ${cy})`}
-  />
-);
-
-// ── ILLUSTRATIONS ──────────────────────────────────────────────────────────
+// 400×160 viewBox — designs fill the full space, no small centered icons
 
 const VarstadSvg: React.FC = () => (
-  <>
-    <rect x={196} y={15} width={8} height={103} rx={3} fill={C.olive} />
-    <rect x={185} y={103} width={30} height={8} rx={2} fill={C.gold} />
-    <rect x={187} y={113} width={26} height={5} rx={2} fill={C.gold} fillOpacity={0.6} />
-    {[160, 170, 180, 190, 200, 210, 220, 230, 240].map((x2, i) => (
-      <line key={i} x1={200} y1={118} x2={x2} y2={148}
-        stroke={C.olive} strokeWidth={2.5} strokeLinecap="round" />
+  // Olive field with large central broom, folk flowers flanking
+  <svg viewBox="0 0 400 160" className="w-full h-40 md:h-48 block" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    {/* Background */}
+    <rect width="400" height="160" fill="#3d5010"/>
+    {/* Subtle stripe texture */}
+    {Array.from({length: 20}).map((_, i) => (
+      <line key={i} x1={i*22} y1="0" x2={i*22-40} y2="160" stroke="#587818" strokeWidth="18" strokeOpacity="0.4"/>
     ))}
-    <FolkFlower cx={98} cy={55} petalColor={C.red} centerColor={C.gold} scale={0.95} />
-    <FolkFlower cx={128} cy={105} petalColor={C.red} centerColor={C.gold} scale={0.75} />
-    <FolkFlower cx={285} cy={48} petalColor={C.red} centerColor={C.gold} scale={0.9} />
-    <FolkFlower cx={308} cy={102} petalColor={C.red} centerColor={C.gold} scale={0.72} />
-    <Leaf cx={78} cy={75} angle={-35} color={C.olive} size={0.85} />
-    <Leaf cx={94} cy={70} angle={25} color={C.olive} size={0.85} />
-    <Leaf cx={266} cy={68} angle={-25} color={C.olive} size={0.75} />
-    <Leaf cx={280} cy={65} angle={20} color={C.olive} size={0.75} />
-  </>
+
+    {/* Large broom — handle spans full height, bristles fill right side */}
+    <g transform="translate(200,80)">
+      {/* Handle */}
+      <rect x="-5" y="-72" width="10" height="144" rx="4" fill="#c9a866"/>
+      {/* Binding */}
+      <rect x="-18" y="28" width="36" height="12" rx="3" fill="#a07a30"/>
+      <rect x="-16" y="42" width="32" height="7" rx="2" fill="#a07a30" fillOpacity="0.7"/>
+      {/* Bristles — wide fan from binding base */}
+      {[-80,-64,-48,-32,-16,0,16,32,48,64,80].map((dx, i) => (
+        <line key={i} x1="0" y1="49" x2={dx} y2="78" stroke="#c9a866" strokeWidth="3" strokeLinecap="round"/>
+      ))}
+    </g>
+
+    {/* Folk flowers LEFT — large, filling left third */}
+    {/* Flower 1 */}
+    <g transform="translate(72,60)">
+      {[0,60,120,180,240,300].map(a => (
+        <ellipse key={a} cx="0" cy="-28" rx="9" ry="20" fill="#f5efea" transform={`rotate(${a})`} fillOpacity="0.9"/>
+      ))}
+      <circle r="13" fill="#a07a30"/>
+      <circle r="7" fill="#f5efea" fillOpacity="0.6"/>
+    </g>
+    {/* Flower 2 */}
+    <g transform="translate(48,118)">
+      {[0,60,120,180,240,300].map(a => (
+        <ellipse key={a} cx="0" cy="-20" rx="7" ry="14" fill="#f5efea" transform={`rotate(${a})`} fillOpacity="0.85"/>
+      ))}
+      <circle r="10" fill="#a07a30"/>
+    </g>
+    {/* Flower 3 */}
+    <g transform="translate(110,100)">
+      {[0,60,120,180,240,300].map(a => (
+        <ellipse key={a} cx="0" cy="-16" rx="6" ry="12" fill="#f5efea" transform={`rotate(${a})`} fillOpacity="0.8"/>
+      ))}
+      <circle r="8" fill="#a07a30"/>
+    </g>
+
+    {/* Folk flowers RIGHT */}
+    <g transform="translate(328,60)">
+      {[0,60,120,180,240,300].map(a => (
+        <ellipse key={a} cx="0" cy="-28" rx="9" ry="20" fill="#f5efea" transform={`rotate(${a})`} fillOpacity="0.9"/>
+      ))}
+      <circle r="13" fill="#a07a30"/>
+      <circle r="7" fill="#f5efea" fillOpacity="0.6"/>
+    </g>
+    <g transform="translate(352,118)">
+      {[0,60,120,180,240,300].map(a => (
+        <ellipse key={a} cx="0" cy="-20" rx="7" ry="14" fill="#f5efea" transform={`rotate(${a})`} fillOpacity="0.85"/>
+      ))}
+      <circle r="10" fill="#a07a30"/>
+    </g>
+    <g transform="translate(290,100)">
+      {[0,60,120,180,240,300].map(a => (
+        <ellipse key={a} cx="0" cy="-16" rx="6" ry="12" fill="#f5efea" transform={`rotate(${a})`} fillOpacity="0.8"/>
+      ))}
+      <circle r="8" fill="#a07a30"/>
+    </g>
+
+    {/* Leaf pairs on stems */}
+    {[[155,40,-30],[165,65,20],[235,40,30],[245,65,-20]].map(([cx,cy,a],i) => (
+      <ellipse key={i} cx={cx} cy={cy} rx="6" ry="13" fill="#587818" transform={`rotate(${a} ${cx} ${cy})`}/>
+    ))}
+
+    {/* Gold border */}
+    <rect x="6" y="6" width="388" height="148" fill="none" stroke="#a07a30" strokeWidth="2"/>
+  </svg>
 );
 
 const GrillkvallSvg: React.FC = () => (
-  <>
-    {[[72, 28], [118, 20], [163, 33], [237, 22], [288, 30], [330, 20], [362, 37]].map(([cx, cy], i) => (
-      <polygon key={i}
-        points={`${cx},${cy - 5} ${cx + 2.5},${cy} ${cx},${cy + 5} ${cx - 2.5},${cy}`}
-        fill={C.gold} fillOpacity={0.75}
-      />
+  // Dark indigo night sky, large red grill with gold flames
+  <svg viewBox="0 0 400 160" className="w-full h-40 md:h-48 block" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="400" height="160" fill="#091733"/>
+    {/* Sky gradient effect — subtle horizontal bands */}
+    <rect width="400" height="60" fill="#0f2248" fillOpacity="0.6"/>
+
+    {/* Stars scattered */}
+    {[[30,18],[75,12],[120,25],[180,8],[240,20],[290,10],[350,22],[370,40],[20,50],[390,55],[155,38],[310,35]].map(([cx,cy],i) => (
+      <polygon key={i} points={`${cx},${cy-4} ${cx+2},${cy} ${cx},${cy+4} ${cx-2},${cy}`} fill="#c9a866" fillOpacity={0.6+i%3*0.15}/>
     ))}
-    <line x1={178} y1={130} x2={162} y2={150} stroke={C.red} strokeWidth={4} strokeLinecap="round" />
-    <line x1={222} y1={130} x2={238} y2={150} stroke={C.red} strokeWidth={4} strokeLinecap="round" />
-    <line x1={168} y1={143} x2={232} y2={143} stroke={C.red} strokeWidth={2.5} strokeLinecap="round" />
-    <circle cx={200} cy={88} r={42} fill={C.red} fillOpacity={0.1} stroke={C.red} strokeWidth={3} />
-    <path d="M158,88 A42,42 0 0,1 242,88" fill={C.red} fillOpacity={0.18} stroke={C.red} strokeWidth={2.5} />
-    {[78, 88, 98].map((y) => (
-      <line key={y} x1={160} y1={y} x2={240} y2={y} stroke={C.red} strokeWidth={2} strokeOpacity={0.45} />
-    ))}
-    <path d="M185,46 C177,38 177,28 185,20 C193,28 193,38 185,46 Z" fill={C.gold} />
-    <path d="M200,43 C192,35 192,25 200,17 C208,25 208,35 200,43 Z" fill={C.gold} />
-    <path d="M215,46 C207,38 207,28 215,20 C223,28 223,38 215,46 Z" fill={C.gold} />
-    <path d="M200,43 C196,37 196,29 200,22 C204,29 204,37 200,43 Z" fill={C.red} fillOpacity={0.55} />
-  </>
+
+    {/* Large grill centered */}
+    <g transform="translate(200,88)">
+      {/* Legs */}
+      <line x1="-38" y1="44" x2="-55" y2="70" stroke="#7d1818" strokeWidth="6" strokeLinecap="round"/>
+      <line x1="38" y1="44" x2="55" y2="70" stroke="#7d1818" strokeWidth="6" strokeLinecap="round"/>
+      <line x1="-48" y1="62" x2="48" y2="62" stroke="#7d1818" strokeWidth="4" strokeLinecap="round"/>
+      {/* Grill bowl */}
+      <circle r="55" fill="#7d1818"/>
+      <circle r="55" fill="none" stroke="#5a1010" strokeWidth="3"/>
+      {/* Grill lid (top half darker) */}
+      <path d="M-55,0 A55,55 0 0,1 55,0" fill="#5a1010"/>
+      {/* Grill grate lines */}
+      {[-36,-18,0,18,36].map(x => (
+        <line key={x} x1={x} y1={-Math.sqrt(55*55-x*x)} x2={x} y2={Math.sqrt(55*55-x*x)} stroke="#a07a30" strokeWidth="1.5" strokeOpacity="0.5"/>
+      ))}
+      {[-36,-18,0,18,36].map(y => (
+        <line key={y} x1={-Math.sqrt(Math.max(0,55*55-y*y))} y1={y} x2={Math.sqrt(Math.max(0,55*55-y*y))} y2={y} stroke="#a07a30" strokeWidth="1.5" strokeOpacity="0.5"/>
+      ))}
+      {/* Rim highlight */}
+      <circle r="55" fill="none" stroke="#a07a30" strokeWidth="2" strokeOpacity="0.4"/>
+      {/* Handle on lid */}
+      <rect x="-6" y="-60" width="12" height="10" rx="3" fill="#a07a30"/>
+    </g>
+
+    {/* Flames above grill */}
+    <g transform="translate(200,33)">
+      {/* Outer flames */}
+      <path d="M-30,0 C-36,-12 -28,-28 -30,-40 C-20,-28 -18,-12 -30,0 Z" fill="#a07a30"/>
+      <path d="M30,0 C36,-12 28,-28 30,-40 C20,-28 18,-12 30,0 Z" fill="#a07a30"/>
+      <path d="M-15,0 C-22,-18 -12,-36 -15,-52 C-5,-36 0,-18 -15,0 Z" fill="#c9a866"/>
+      <path d="M15,0 C22,-18 12,-36 15,-52 C5,-36 0,-18 15,0 Z" fill="#c9a866"/>
+      {/* Central flame */}
+      <path d="M0,0 C-10,-22 -5,-44 0,-60 C5,-44 10,-22 0,0 Z" fill="#f5efea" fillOpacity="0.9"/>
+    </g>
+
+    {/* Gold border */}
+    <rect x="6" y="6" width="388" height="148" fill="none" stroke="#a07a30" strokeWidth="2" strokeOpacity="0.5"/>
+  </svg>
 );
 
 const VafflaSvg: React.FC = () => (
-  <>
-    <rect x={150} y={74} width={100} height={66} rx={5} fill={C.goldLight} stroke={C.gold} strokeWidth={2} />
-    {[87, 100, 113, 126].map((y) => (
-      <line key={y} x1={150} y1={y} x2={250} y2={y} stroke={C.gold} strokeWidth={1.2} />
+  // Warm amber background, huge waffle filling the frame
+  <svg viewBox="0 0 400 160" className="w-full h-40 md:h-48 block" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="400" height="160" fill="#7a5520"/>
+    {/* Warm background texture */}
+    {Array.from({length: 8}).map((_, i) => (
+      <rect key={i} x={i*52} y="0" width="26" height="160" fill="#8a6028" fillOpacity="0.3"/>
     ))}
-    {[167, 184, 200, 217, 234].map((x) => (
-      <line key={x} x1={x} y1={74} x2={x} y2={140} stroke={C.gold} strokeWidth={1.2} />
+
+    {/* Giant waffle — takes up most of the card */}
+    <g transform="translate(200,80)">
+      {/* Shadow */}
+      <rect x="-140" y="-55" width="280" height="120" rx="8" fill="#3d2a10" fillOpacity="0.4" transform="translate(4,4)"/>
+      {/* Waffle base */}
+      <rect x="-140" y="-55" width="280" height="120" rx="8" fill="#c9a866"/>
+      {/* Waffle squares — 8×5 grid */}
+      {Array.from({length:7}).map((_,col) => (
+        Array.from({length:4}).map((_,row) => (
+          <rect key={`${col}-${row}`}
+            x={-128 + col*40} y={-43 + row*30}
+            width="36" height="26" rx="4"
+            fill="#a07a30" fillOpacity="0.5"
+          />
+        ))
+      ))}
+      {/* Waffle edge/plate */}
+      <rect x="-140" y="-55" width="280" height="120" rx="8" fill="none" stroke="#a07a30" strokeWidth="3"/>
+    </g>
+
+    {/* Steam wisps */}
+    {[[-40,-72],[-10,-78],[20,-72],[50,-75]].map(([dx,dy],i) => (
+      <path key={i}
+        d={`M${200+dx},${80+dy} C${200+dx-8},${80+dy-14} ${200+dx+8},${80+dy-26} ${200+dx},${80+dy-38}`}
+        fill="none" stroke="#f5efea" strokeWidth="3" strokeLinecap="round" strokeOpacity="0.6"/>
     ))}
-    <rect x={150} y={138} width={100} height={4} rx={2} fill={C.gold} fillOpacity={0.4} />
-    <path d="M173,71 C171,62 175,56 173,47" fill="none" stroke={C.stone} strokeWidth={2} strokeLinecap="round" />
-    <path d="M200,69 C198,60 202,54 200,45" fill="none" stroke={C.stone} strokeWidth={2} strokeLinecap="round" />
-    <path d="M227,71 C225,62 229,56 227,47" fill="none" stroke={C.stone} strokeWidth={2} strokeLinecap="round" />
-    {([[92, 52, 1], [308, 52, 1], [82, 108, 0.85], [318, 108, 0.85]] as [number, number, number][]).map(([cx, cy, op], i) => (
+
+    {/* Folk hearts left and right */}
+    {[[-165,35],[-165,-35],[165,35],[165,-35]].map(([dx,dy],i) => (
       <polygon key={i}
-        points={`${cx},${cy - 9} ${cx + 7},${cy} ${cx},${cy + 9} ${cx - 7},${cy}`}
-        fill={C.red} fillOpacity={op}
+        points={`${200+dx},${80+dy-14} ${200+dx+10},${80+dy} ${200+dx},${80+dy+14} ${200+dx-10},${80+dy}`}
+        fill="#f5efea" fillOpacity="0.7"
       />
     ))}
-    {[[340, 80], [60, 80]].map(([cx, cy], i) => (
-      <g key={i}>
-        <line x1={cx - 8} y1={cy} x2={cx + 8} y2={cy} stroke={C.gold} strokeWidth={2} />
-        <line x1={cx} y1={cy - 8} x2={cx} y2={cy + 8} stroke={C.gold} strokeWidth={2} />
-      </g>
-    ))}
-  </>
+
+    {/* Gold border */}
+    <rect x="6" y="6" width="388" height="148" fill="none" stroke="#c9a866" strokeWidth="2"/>
+  </svg>
 );
 
 const TomteSvg: React.FC = () => (
-  <>
-    <polygon points="200,18 158,70 242,70" fill={C.red} />
-    <rect x={152} y={67} width={96} height={11} rx={5} fill={C.red} />
-    <circle cx={200} cy={18} r={8} fill={C.paper} />
-    <circle cx={200} cy={18} r={5} fill={C.stone} />
-    <ellipse cx={200} cy={112} rx={43} ry={38} fill={C.paper} />
-    <circle cx={190} cy={97} r={3.5} fill={C.ink} />
-    <circle cx={210} cy={97} r={3.5} fill={C.ink} />
-    <circle cx={191.5} cy={95.5} r={1} fill="white" />
-    <circle cx={211.5} cy={95.5} r={1} fill="white" />
-    <circle cx={200} cy={105} r={4} fill={C.red} fillOpacity={0.55} />
-    <circle cx={183} cy={108} r={6} fill={C.red} fillOpacity={0.18} />
-    <circle cx={217} cy={108} r={6} fill={C.red} fillOpacity={0.18} />
-    <rect x={193} y={67} width={14} height={11} fill={C.gold} />
-    <rect x={196} y={69} width={8} height={7} rx={1} fill={C.red} />
-    {[[85, 30], [315, 30], [62, 80], [338, 80], [72, 130], [328, 130], [140, 18], [260, 18]].map(([cx, cy], i) => (
-      <g key={i} opacity={0.5 + (i % 3) * 0.1}>
-        <line x1={cx - 6} y1={cy} x2={cx + 6} y2={cy} stroke={C.indigo} strokeWidth={1.5} />
-        <line x1={cx} y1={cy - 6} x2={cx} y2={cy + 6} stroke={C.indigo} strokeWidth={1.5} />
-        <line x1={cx - 4.2} y1={cy - 4.2} x2={cx + 4.2} y2={cy + 4.2} stroke={C.indigo} strokeWidth={1.5} />
-        <line x1={cx + 4.2} y1={cy - 4.2} x2={cx - 4.2} y2={cy + 4.2} stroke={C.indigo} strokeWidth={1.5} />
+  // Indigo night, large tomte figure
+  <svg viewBox="0 0 400 160" className="w-full h-40 md:h-48 block" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="400" height="160" fill="#091733"/>
+    <rect width="400" height="160" fill="#0f2248" fillOpacity="0.5"/>
+
+    {/* Many snowflakes across background */}
+    {[[30,20],[80,40],[140,15],[50,80],[100,120],[160,90],[240,25],[300,45],[360,20],[330,90],[370,130],[260,110],[180,140],[70,145],[340,145],[400-20,60]].map(([cx,cy],i) => (
+      <g key={i} opacity={0.3+i%4*0.12} transform={`translate(${cx},${cy})`}>
+        <line x1="-7" y1="0" x2="7" y2="0" stroke="#f5efea" strokeWidth="1.5"/>
+        <line x1="0" y1="-7" x2="0" y2="7" stroke="#f5efea" strokeWidth="1.5"/>
+        <line x1="-5" y1="-5" x2="5" y2="5" stroke="#f5efea" strokeWidth="1.5"/>
+        <line x1="5" y1="-5" x2="-5" y2="5" stroke="#f5efea" strokeWidth="1.5"/>
       </g>
     ))}
-  </>
+
+    {/* Large tomte centered */}
+    <g transform="translate(200,80)">
+      {/* Hat (large cone) */}
+      <polygon points="0,-72 -52,10 52,10" fill="#7d1818"/>
+      <polygon points="0,-72 -52,10 0,-10 52,10" fill="#5a1010"/>
+      {/* Hat brim */}
+      <rect x="-58" y="7" width="116" height="14" rx="6" fill="#7d1818"/>
+      {/* Pompom */}
+      <circle cx="0" cy="-72" r="11" fill="#f5efea"/>
+      <circle cx="0" cy="-72" r="7" fill="#bdb0a0"/>
+      {/* Belt buckle on brim */}
+      <rect x="-10" y="8" width="20" height="12" rx="1" fill="#a07a30"/>
+      <rect x="-6" y="10" width="12" height="8" rx="1" fill="#7d1818"/>
+      {/* Beard — large oval */}
+      <ellipse cx="0" cy="48" rx="55" ry="46" fill="#f5efea"/>
+      {/* Eyes */}
+      <circle cx="-14" cy="18" r="5" fill="#091733"/>
+      <circle cx="14" cy="18" r="5" fill="#091733"/>
+      <circle cx="-12" cy="16" r="2" fill="white"/>
+      <circle cx="16" cy="16" r="2" fill="white"/>
+      {/* Nose */}
+      <circle cx="0" cy="28" r="6" fill="#7d1818" fillOpacity="0.5"/>
+      {/* Cheeks */}
+      <circle cx="-22" cy="34" r="9" fill="#7d1818" fillOpacity="0.2"/>
+      <circle cx="22" cy="34" r="9" fill="#7d1818" fillOpacity="0.2"/>
+    </g>
+
+    {/* Gold border */}
+    <rect x="6" y="6" width="388" height="148" fill="none" stroke="#a07a30" strokeWidth="2" strokeOpacity="0.6"/>
+  </svg>
 );
 
 const HistoriaSvg: React.FC = () => (
-  <>
-    <polygon points="95,142 113,88 131,142" fill={C.olive} />
-    <rect x={111} y={139} width={6} height={10} rx={1} fill={C.oliveDark} />
-    <polygon points="269,142 287,88 305,142" fill={C.olive} />
-    <rect x={283} y={139} width={6} height={10} rx={1} fill={C.oliveDark} />
-    <rect x={155} y={72} width={90} height={72} fill={C.red} />
-    <polygon points="140,72 200,38 260,72" fill={C.redDark} />
-    <rect x={167} y={88} width={20} height={22} rx={10} fill={C.goldLight} stroke={C.gold} strokeWidth={1.5} />
-    <rect x={213} y={88} width={20} height={22} rx={10} fill={C.goldLight} stroke={C.gold} strokeWidth={1.5} />
-    <rect x={191} y={116} width={18} height={28} rx={3} fill={C.indigo} />
-    <rect x={193} y={118} width={6} height={11} rx={1} stroke={C.gold} strokeWidth={0.8} fill={C.indigo} fillOpacity={0.5} />
-    <rect x={201} y={118} width={6} height={11} rx={1} stroke={C.gold} strokeWidth={0.8} fill={C.indigo} fillOpacity={0.5} />
-    <rect x={197} y={30} width={6} height={18} fill={C.gold} />
-    <rect x={191} y={37} width={18} height={6} fill={C.gold} />
-    <rect x={145} y={142} width={110} height={3} rx={1.5} fill={C.red} fillOpacity={0.5} />
-    {[[65, 38], [160, 25], [240, 25], [335, 38]].map(([cx, cy], i) => (
+  // Warm cream sky, large red building spanning the width
+  <svg viewBox="0 0 400 160" className="w-full h-40 md:h-48 block" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="400" height="160" fill="#e8ddd4"/>
+    {/* Cloud-like soft shapes in sky */}
+    <ellipse cx="80" cy="35" rx="55" ry="22" fill="#f5efea" fillOpacity="0.7"/>
+    <ellipse cx="320" cy="28" rx="65" ry="18" fill="#f5efea" fillOpacity="0.6"/>
+    <ellipse cx="200" cy="40" rx="50" ry="15" fill="#f5efea" fillOpacity="0.5"/>
+
+    {/* Ground */}
+    <rect x="0" y="130" width="400" height="30" fill="#587818" fillOpacity="0.3"/>
+    <rect x="0" y="135" width="400" height="25" fill="#3d5010" fillOpacity="0.2"/>
+
+    {/* Trees flanking */}
+    {/* Left trees */}
+    <polygon points="45,130 65,68 85,130" fill="#587818"/>
+    <rect x="61" y="127" width="8" height="12" fill="#3d5010"/>
+    <polygon points="22,130 38,80 54,130" fill="#3d5010" fillOpacity="0.8"/>
+    <rect x="35" y="127" width="7" height="12" fill="#3d5010"/>
+    {/* Right trees */}
+    <polygon points="315,130 335,68 355,130" fill="#587818"/>
+    <rect x="331" y="127" width="8" height="12" fill="#3d5010"/>
+    <polygon points="346,130 362,80 378,130" fill="#3d5010" fillOpacity="0.8"/>
+    <rect x="359" y="127" width="7" height="12" fill="#3d5010"/>
+
+    {/* Main building — wide, spans center */}
+    {/* Body */}
+    <rect x="105" y="70" width="190" height="65" fill="#7d1818"/>
+    {/* Roof */}
+    <polygon points="88,70 200,28 312,70" fill="#5a1010"/>
+    {/* Windows — arched */}
+    <rect x="122" y="86" width="28" height="32" rx="14" fill="#c9a866" stroke="#a07a30" strokeWidth="1.5"/>
+    <rect x="186" y="86" width="28" height="32" rx="14" fill="#c9a866" stroke="#a07a30" strokeWidth="1.5"/>
+    <rect x="250" y="86" width="28" height="32" rx="14" fill="#c9a866" stroke="#a07a30" strokeWidth="1.5"/>
+    {/* Door */}
+    <rect x="186" y="108" width="28" height="27" rx="4" fill="#091733"/>
+    <rect x="190" y="112" width="10" height="16" rx="1" fill="#091733" stroke="#a07a30" strokeWidth="0.8" fillOpacity="0.6"/>
+    <rect x="202" y="112" width="10" height="16" rx="1" fill="#091733" stroke="#a07a30" strokeWidth="0.8" fillOpacity="0.6"/>
+    {/* Steeple + cross */}
+    <rect x="196" y="20" width="8" height="22" fill="#a07a30"/>
+    <rect x="188" y="28" width="24" height="7" fill="#a07a30"/>
+    {/* Foundation */}
+    <rect x="98" y="133" width="204" height="5" rx="2" fill="#5a1010" fillOpacity="0.5"/>
+
+    {/* Ornament stars in sky */}
+    {[[158,22],[242,22]].map(([cx,cy],i) => (
       <g key={i}>
-        <line x1={cx - 7} y1={cy} x2={cx + 7} y2={cy} stroke={C.gold} strokeWidth={2} />
-        <line x1={cx} y1={cy - 7} x2={cx} y2={cy + 7} stroke={C.gold} strokeWidth={2} />
-        <line x1={cx - 5} y1={cy - 5} x2={cx + 5} y2={cy + 5} stroke={C.gold} strokeWidth={2} />
-        <line x1={cx + 5} y1={cy - 5} x2={cx - 5} y2={cy + 5} stroke={C.gold} strokeWidth={2} />
+        {[0,45,90,135].map(a => (
+          <line key={a} x1={cx} y1={cy-9} x2={cx} y2={cy+9} stroke="#a07a30" strokeWidth="2" transform={`rotate(${a} ${cx} ${cy})`}/>
+        ))}
       </g>
     ))}
-  </>
+
+    {/* Gold border */}
+    <rect x="6" y="6" width="388" height="148" fill="none" stroke="#a07a30" strokeWidth="2"/>
+  </svg>
 );
 
 const StadSvg: React.FC = () => (
-  <>
-    <rect x={265} y={14} width={8} height={128} rx={3} fill={C.olive} />
-    {[258, 263, 269, 275, 280].map((x, i) => (
-      <line key={i} x1={x} y1={142} x2={x + (i - 2) * 4} y2={153}
-        stroke={C.stone} strokeWidth={2.5} strokeLinecap="round" />
+  // Stone background, large bucket + mop composition
+  <svg viewBox="0 0 400 160" className="w-full h-40 md:h-48 block" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="400" height="160" fill="#9a8a78"/>
+    {/* Subtle diamond pattern background */}
+    {Array.from({length:6}).map((_,row) => (
+      Array.from({length:10}).map((_,col) => (
+        <polygon key={`${row}-${col}`}
+          points={`${col*44+row%2*22},${row*30-4} ${col*44+row%2*22+10},${row*30+8} ${col*44+row%2*22},${row*30+20} ${col*44+row%2*22-10},${row*30+8}`}
+          fill="#bdb0a0" fillOpacity="0.3"
+        />
+      ))
     ))}
-    <path d="M127,55 L173,55 L184,133 L116,133 Z"
-      fill={C.stone} stroke={C.stoneDark} strokeWidth={2} strokeLinejoin="round" />
-    <path d="M127,55 C108,27 192,27 173,55"
-      fill="none" stroke={C.stoneDark} strokeWidth={3.5} strokeLinecap="round" />
-    <ellipse cx={150} cy={55} rx={23} ry={7} fill="white" fillOpacity={0.75} />
-    {[[140, 45], [153, 40], [163, 46], [146, 35], [159, 33]].map(([cx, cy], i) => (
-      <circle key={i} cx={cx} cy={cy} r={3.5 - i * 0.4}
-        fill="white" fillOpacity={0.6 - i * 0.08} />
-    ))}
-    {[[320, 28], [348, 52], [335, 96], [85, 38], [62, 88], [88, 122]].map(([cx, cy], i) => (
+
+    {/* MOP — right side, tall */}
+    <g transform="translate(290,80)">
+      {/* Handle */}
+      <rect x="-5" y="-72" width="10" height="144" rx="4" fill="#587818"/>
+      {/* Mop head */}
+      <rect x="-28" y="58" width="56" height="12" rx="3" fill="#bdb0a0"/>
+      {/* Fringe */}
+      {[-24,-16,-8,0,8,16,24].map((dx,i) => (
+        <line key={i} x1={dx} y1="70" x2={dx+(i-3)*3} y2="85" stroke="#f5efea" strokeWidth="3" strokeLinecap="round" strokeOpacity="0.8"/>
+      ))}
+    </g>
+
+    {/* BUCKET — left-center, large */}
+    <g transform="translate(145,88)">
+      {/* Shadow */}
+      <path d="M-62,44 L-52,44 L40,44 L50,44" stroke="#3d2a10" strokeWidth="3" strokeOpacity="0.3"/>
+      {/* Bucket body */}
+      <path d="M-58,-48 L58,-48 L72,44 L-72,44 Z" fill="#f5efea"/>
+      <path d="M-58,-48 L58,-48 L72,44 L-72,44 Z" fill="#bdb0a0" fillOpacity="0.5"/>
+      <path d="M-58,-48 L58,-48 L72,44 L-72,44 Z" fill="none" stroke="#9a8a78" strokeWidth="3" strokeLinejoin="round"/>
+      {/* Bucket stripe */}
+      <path d="M-68,16 L68,16" stroke="#9a8a78" strokeWidth="2.5" strokeOpacity="0.4"/>
+      {/* Handle */}
+      <path d="M-58,-48 C-80,-88 80,-88 58,-48" fill="none" stroke="#5a4a3a" strokeWidth="5" strokeLinecap="round"/>
+      {/* Foam/suds on top */}
+      <ellipse cx="0" cy="-48" rx="58" ry="14" fill="white" fillOpacity="0.85"/>
+      {/* Bubbles rising */}
+      {[[-30,-68],[-12,-78],[8,-72],[28,-80],[45,-65]].map(([bx,by],i) => (
+        <circle key={i} cx={bx} cy={by} r={5-i*0.5} fill="white" fillOpacity={0.7-i*0.1}/>
+      ))}
+    </g>
+
+    {/* Gold sparkle stars scattered */}
+    {[[355,20],[375,55],[365,100],[340,135],[40,20],[25,65],[50,130],[220,18],[220,145]].map(([cx,cy],i) => (
       <g key={i}>
-        <line x1={cx - 8} y1={cy} x2={cx + 8} y2={cy} stroke={C.gold} strokeWidth={1.5} />
-        <line x1={cx} y1={cy - 8} x2={cx} y2={cy + 8} stroke={C.gold} strokeWidth={1.5} />
-        <line x1={cx - 5.5} y1={cy - 5.5} x2={cx + 5.5} y2={cy + 5.5} stroke={C.gold} strokeWidth={1} />
-        <line x1={cx + 5.5} y1={cy - 5.5} x2={cx - 5.5} y2={cy + 5.5} stroke={C.gold} strokeWidth={1} />
+        <line x1={cx-10} y1={cy} x2={cx+10} y2={cy} stroke="#a07a30" strokeWidth="2"/>
+        <line x1={cx} y1={cy-10} x2={cx} y2={cy+10} stroke="#a07a30" strokeWidth="2"/>
+        <line x1={cx-7} y1={cy-7} x2={cx+7} y2={cy+7} stroke="#a07a30" strokeWidth="1.5"/>
+        <line x1={cx+7} y1={cy-7} x2={cx-7} y2={cy+7} stroke="#a07a30" strokeWidth="1.5"/>
       </g>
     ))}
-    {[[200, 62], [216, 76], [194, 90]].map(([cx, cy], i) => (
-      <ellipse key={i} cx={cx} cy={cy + 5} rx={4} ry={6}
-        fill={C.indigo} fillOpacity={0.25} />
-    ))}
-  </>
+
+    {/* Gold border */}
+    <rect x="6" y="6" width="388" height="148" fill="none" stroke="#a07a30" strokeWidth="2" strokeOpacity="0.7"/>
+  </svg>
 );
 
-// ── EXPORT ─────────────────────────────────────────────────────────────────
-
-const illustrations: Record<EventCategory, React.FC> = {
+const components: Record<EventCategory, React.FC> = {
   "vårstäd": VarstadSvg,
   "grillkväll": GrillkvallSvg,
   "våffla": VafflaSvg,
@@ -252,19 +366,8 @@ const illustrations: Record<EventCategory, React.FC> = {
 };
 
 const CategoryThumbnail: React.FC<{ category: EventCategory }> = ({ category }) => {
-  const Illustration = illustrations[category];
-  return (
-    <svg
-      viewBox="0 0 400 160"
-      className="w-full h-40 md:h-48 block"
-      preserveAspectRatio="xMidYMid slice"
-      aria-hidden="true"
-    >
-      <rect width={400} height={160} fill={C.paper} />
-      {Illustration && <Illustration />}
-      <Frame />
-    </svg>
-  );
+  const Svg = components[category];
+  return Svg ? <Svg /> : null;
 };
 
 export default CategoryThumbnail;
