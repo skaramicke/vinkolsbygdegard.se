@@ -15,6 +15,7 @@
     "classnames": "^2.3.2",
     "decap-cms-app": "^3.0.12",
     "decap-cms-locales": "^3.0.12",
+    "lucide-react": "^1.8.0",
     "path-browserify": "^1.0.1",
     "postcss-import": "^15.1.0",
     "react": "^18.2.0",

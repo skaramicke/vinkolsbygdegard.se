@@ -1,7 +1,7 @@
 import React from "react";
 import { CmsEvent, CmsNewsArticle } from "../types/cms";
 import Content from "./Content";
-import CategoryThumbnail, { EventCategory } from "./CategoryThumbnail";
+import CategorySeal, { EventCategory } from "./CategorySeal";
 import { icsDataUrl } from "../utils/ics";
 
 type SortOrderType = "asc" | "desc";
@@ -144,9 +144,12 @@ const DateItemList = ({
                 <div className="mt-3 text-center text-[0.7rem] tracking-[0.2em] uppercase text-light-muted">
                   {timeRange(item.date, endDate)}
                 </div>
+                {"category" in item && item.category && (
+                  <CategorySeal category={item.category as EventCategory} />
+                )}
               </div>
               <div className="min-w-0 relative z-10">
-                {item.thumbnail ? (
+                {item.thumbnail && (
                   <div className="event-thumb mb-3 -mt-1 border border-light-stone/60 overflow-hidden">
                     <img
                       src={item.thumbnail}
@@ -154,11 +157,7 @@ const DateItemList = ({
                       className="w-full h-40 md:h-48 object-cover object-center"
                     />
                   </div>
-                ) : "category" in item && item.category ? (
-                  <div className="event-thumb mb-3 -mt-1 border border-light-stone/60 overflow-hidden">
-                    <CategoryThumbnail category={item.category as EventCategory} />
-                  </div>
-                ) : null}
+                )}
                 <h2 className="section-heading text-2xl md:text-3xl text-light-text leading-tight">
                   {item.title}
                 </h2>
